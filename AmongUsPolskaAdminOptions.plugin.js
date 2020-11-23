@@ -2,7 +2,7 @@
  * @name AmongUsPolskaAdminOptions
  * @version 0
  * @description Dodatkowe opcje dla Administracji serwera Among Us Polska.
- * @updateUrl 
+ * @updateUrl https://raw.githubusercontent.com/Benio101/AmongUsPolskaAdminOptions/main/AmongUsPolskaAdminOptions.plugin.js
  * @author Benio
  */
 
