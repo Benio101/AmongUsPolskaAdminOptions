@@ -199,6 +199,41 @@ module.exports = (_ => {
 					})
 				}));
 
+				// Spam
+				if (
+						!e.instance.props.expanded
+					&&	e.instance.props.message.author.id != BDFDB.UserUtils.me.id
+					&&	(
+								ZeresPluginLibrary.DiscordAPI.currentChannel.id == chat_ogolny_id
+							||	ZeresPluginLibrary.DiscordAPI.currentChannel.id == pomoc_supportu_id
+						)
+				) e.returnvalue.props.children.unshift(BDFDB.ReactUtils.createElement(BDFDB.LibraryComponents.TooltipContainer, {
+					key: "mention",
+					text: "Spam",
+					children: BDFDB.ReactUtils.createElement(BDFDB.LibraryComponents.Clickable, {
+						className: BDFDB.disCN.messagetoolbarbutton,
+						onClick: _ => {
+							let delay_time = 0;
+							let delay = function(min, max){ return delay_time += 1e3 * (Math.random() * (max - min)); };
+							let delay_first_cmd = function(){ return delay(2, 3); };
+							let delay_next_cmd = function(){ return delay(6, 9); };
+
+							// delete message
+							ZLibrary.DiscordModules.MessageActions.deleteMessage(ZeresPluginLibrary.DiscordAPI.currentChannel.id, e.instance.props.message.id);
+
+							// warn user
+							setTimeout(function(){ ZLibrary.DiscordModules.MessageActions.sendMessage(komendy_id, {content:`!warn ${e.instance.props.message.author.id} Spam kanale <#${ZeresPluginLibrary.DiscordAPI.currentChannel.id}>.`}); }, delay_first_cmd());
+
+							// see user warnings
+							setTimeout(function(){ ZLibrary.DiscordModules.MessageActions.sendMessage(komendy_id, {content:`!warnings ${e.instance.props.message.author.id}`}); }, delay_next_cmd());
+						},
+						children: BDFDB.ReactUtils.createElement(BDFDB.LibraryComponents.SvgIcon, {
+							className: BDFDB.disCN.messagetoolbaricon,
+							iconSVG: `<svg height='24px' width='24px' fill="#FFFF40" viewBox="0 0 25 25" x="0px" y="0px"><title>Spam</title><g data-name="Icon 1"><path d="M4.5,8h.5321L5.94,21.6558a1.5016,1.5016,0,0,0,1.496,1.4013h10.129a1.5015,1.5015,0,0,0,1.496-1.4L19.9679,8H20.5a.5.5,0,0,0,.5-.5v-2a.5.5,0,0,0-.5-.5H4.5a.5.5,0,0,0-.5.5v2A.5.5,0,0,0,4.5,8Zm11.42,9.2129-.707.707L12.5,15.207,9.7871,17.92l-.707-.707L11.793,14.5,9.08,11.7871l.707-.707L12.5,13.793,15.2129,11.08l.707.707L13.207,14.5Z"></path><path d="M10,3h5V4h1V2.5a.5.5,0,0,0-.5-.5h-6a.5.5,0,0,0-.5.5V4h1Z"></path></g></svg>`
+						})
+					})
+				}));
+
 				// Niestosowne słownictwo
 				if (
 						!e.instance.props.expanded
