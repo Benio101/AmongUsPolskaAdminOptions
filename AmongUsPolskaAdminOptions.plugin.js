@@ -3,7 +3,7 @@
  * @description Dodatkowe opcje dla Administracji serwera Among Us Polska.
  * @updateUrl https://raw.githubusercontent.com/Benio101/AmongUsPolskaAdminOptions/main/AmongUsPolskaAdminOptions.plugin.js
  * @author Benio
- * @version 0.2.1
+ * @version 0.2.2
  */
 
 module.exports = (() =>
@@ -149,7 +149,7 @@ module.exports = (() =>
 			description: 'Dodatkowe opcje dla Administracji serwera Among Us Polska.',
 			updateUrl: 'https://raw.githubusercontent.com/Benio101/AmongUsPolskaAdminOptions/main/AmongUsPolskaAdminOptions.plugin.js',
 			author: 'Benio',
-			version: '0.2.1',
+			version: '0.2.2',
 		},
 
 		time:
