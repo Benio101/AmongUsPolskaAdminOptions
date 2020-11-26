@@ -1,9 +1,12 @@
 /**
  * @name AmongUsPolskaAdminOptions
  * @description Dodatkowe opcje dla Administracji serwera Among Us Polska.
+ * @website https://github.com/Benio101/AmongUsPolskaAdminOptions
  * @updateUrl https://raw.githubusercontent.com/Benio101/AmongUsPolskaAdminOptions/main/AmongUsPolskaAdminOptions.plugin.js
+ * @source https://raw.githubusercontent.com/Benio101/AmongUsPolskaAdminOptions/main/AmongUsPolskaAdminOptions.plugin.js
  * @author Benio
- * @version 0.2.2
+ * @authorId 231850998279176193
+ * @invite amonguspoland
  */
 
 module.exports = (() =>
@@ -147,9 +150,18 @@ module.exports = (() =>
 		{
 			name: 'AmongUsPolskaAdminOptions',
 			description: 'Dodatkowe opcje dla Administracji serwera Among Us Polska.',
-			updateUrl: 'https://raw.githubusercontent.com/Benio101/AmongUsPolskaAdminOptions/main/AmongUsPolskaAdminOptions.plugin.js',
 			author: 'Benio',
-			version: '0.2.2',
+			version: '0.2.3',
+			github: 'https://github.com/1Lighty',
+			github_raw: 'https://raw.githubusercontent.com/1Lighty/BetterDiscordPlugins/master/Plugins/1XenoLib.plugin.js'
+		},
+
+		changeLog:
+		{
+			fixed:
+			{
+				'Aktualizacja': 'Od teraz plugin powinien się sam aktualizować',
+			},
 		},
 
 		time:
@@ -201,6 +213,7 @@ module.exports = (() =>
 	let main_timer = null;
 	let dyno_timer = null;
 	let dyno_busy = false;
+	let GBDFDB = null;
 
 	let main = function()
 	{
@@ -346,7 +359,7 @@ module.exports = (() =>
 
 	let perm_ban = function(user_id, reason)
 	{
-		if (BDFDB.UserUtils.can("BAN_MEMBERS"))
+		if (GBDFDB.UserUtils.can("BAN_MEMBERS"))
 			execute_dyno_command(`!ban ${user_id} ${reason}`);
 		else
 		{
@@ -399,6 +412,7 @@ module.exports = (() =>
 
 	return (([Plugin, BDFDB]) =>
 	{
+		GBDFDB = BDFDB;
 		return class AmongUsPolskaAdminOptions extends Plugin
 		{
 			onLoad()
@@ -723,7 +737,7 @@ module.exports = (() =>
 				) children.unshift(BDFDB.ReactUtils.createElement(BDFDB.LibraryComponents.TooltipContainer,
 				{
 					key: 'mention',
-					text: "Reklama",
+					text: 'Reklama',
 					className: 'AmongUsPolskaAdminOptions-button',
 					children: BDFDB.ReactUtils.createElement(BDFDB.LibraryComponents.Clickable,
 					{
@@ -731,7 +745,7 @@ module.exports = (() =>
 						onClick: _ =>
 						{
 							delete_message(channel.id, message.id);
-							perm_ban(author.id, `Reklama na kanale <#${channel_id}>.`);
+							perm_ban(author.id, `Reklama na kanale <#${channel.id}>.`);
 						},
 						children: BDFDB.ReactUtils.createElement(BDFDB.LibraryComponents.SvgIcon,
 						{
@@ -849,7 +863,7 @@ module.exports = (() =>
 
 							execute_dyno_command(`!tmute ${warned_user_id} ${number_of_warns}d ${reason}`);
 							execute_dyno_command(`!clearwarn ${warned_user_id}`);
-							execute_dyno_command(`!warn ${warned_user_id} Usunięte ostrzeżenia: ${number_of_warns}`);
+							execute_dyno_command(`!warn ${warned_user_id} Usunięte ostrzeżenia: ${number_of_warns}.`);
 						}
 					}
 				}
