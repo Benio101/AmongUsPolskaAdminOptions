@@ -151,7 +151,7 @@ module.exports = (() =>
 			name: 'AmongUsPolskaAdminOptions',
 			description: 'Dodatkowe opcje dla Administracji serwera Among Us Polska.',
 			author: 'Benio',
-			version: '0.2.3',
+			version: '0.2.4',
 			github: 'https://github.com/1Lighty',
 			github_raw: 'https://raw.githubusercontent.com/1Lighty/BetterDiscordPlugins/master/Plugins/1XenoLib.plugin.js'
 		},
@@ -162,6 +162,10 @@ module.exports = (() =>
 			{
 				'Aktualizacja': 'Od teraz plugin powinien się sam aktualizować',
 			},
+			improved:
+			{
+				'Kropka': 'Dodano brakującą kropkę po powodzie warna "Usunięte ostrzeżenia"',
+			}
 		},
 
 		time:
