@@ -152,17 +152,15 @@ module.exports = (() =>
 			name: 'AmongUsPolskaAdminOptions',
 			description: 'Dodatkowe opcje dla Administracji serwera Among Us Polska.',
 			author: 'Benio',
-			version: '0.3.3',
+			version: '0.3.5',
 			github: 'https://github.com/Benio101',
 			github_raw: 'https://raw.githubusercontent.com/Benio101/AmongUsPolskaAdminOptions/main/AmongUsPolskaAdminOptions.plugin.js'
 		},
 
 		changeLog:
 		{
-			fixed:
-			{
-				'Aktualizacja': 'Plugin powinien się sam aktualizować',
-			},
+			// fixed: {},
+			improved: {test: 'Test',},
 		},
 
 		time:
@@ -431,6 +429,8 @@ module.exports = (() =>
 
 				if (!window.BDFDB_Global.pluginQueue.includes(config.info.name))
 					window.BDFDB_Global.pluginQueue.push(config.info.name);
+
+				this.load();
 			}
 
 			onStart()
