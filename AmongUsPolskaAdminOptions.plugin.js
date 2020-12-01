@@ -31,7 +31,7 @@ module.exports = (() =>
 			author: 'Benio',
 			authorId: '231850998279176193',
 			invite: 'amonguspoland',
-			version: '1',
+			version: '1.0.1',
 		},
 
 		// added, fixed, improved
@@ -157,7 +157,7 @@ module.exports = (() =>
 
 	let GBDFDB = null;
 
-	let user_warnings = [];
+	let user_warnings = {};
 	let dyno_busy = false;
 
 	let main_timer = null;
@@ -317,14 +317,7 @@ module.exports = (() =>
 		tasks.execute_dyno_command(`!warn ${user_id} ${reason}`);
 		tasks.execute_dyno_command(`!warnings ${user_id}`);
 
-		if (user_warnings[user_id])
-			clearTimeout(user_warnings[user_id].timer);
-
-		user_warnings[user_id] = {timer: null, timestamp: new Date().getTime()};
-		let timer = setTimeout(function(){
-			user_warnings[user_id] = undefined;
-		}, config.time.waiting_for_user_warns_timeout);
-		user_warnings[user_id].timer = timer;
+		user_warnings[user_id] = true;
 	}
 
 	tasks.perm_ban = function(user_id, reason)
@@ -385,9 +378,9 @@ module.exports = (() =>
 	// ------------------------------------ Utils -------------------------------------------------------------
 	// ------------------------------------------------------------------------------------------------------------
 
-	let log = function(message)
+	let log = function(...args)
 	{
-		console.log('%c[AmongUsPolskaAdminOptions]', 'color: #40E040', message);
+		console.log('%c[AmongUsPolskaAdminOptions]', 'color: #40E040', ...args);
 	}
 
 	// ------------------------------------------------------------------------------------------------------------
@@ -417,8 +410,6 @@ module.exports = (() =>
 				ZLibrary.PluginUpdater.checkForUpdate(config.info.name, config.info.version, config.info.updateUrl);
 				log('onStart();');
 
-				user_warnings = [];
-				this.unpatches = [];
 				// this.unpatches['getMessages'] = BdApi.monkeyPatch(BdApi.findModuleByProps('getMessages'), 'getMessages', {after: this.getMessages});
 				// this.unpatches['openContextMenu'] = BdApi.monkeyPatch(BdApi.findModuleByProps('openContextMenu'), 'render', {after: this.openContextMenu});
 
@@ -435,16 +426,14 @@ module.exports = (() =>
 				}
 		
 				this.unpatches = [];
+				user_warnings = {};
+				dyno_busy = false;
+
+				main_queue = new queue;
+				dyno_queue = new queue;
 
 				clearTimeout(main_timer);
 				clearTimeout(dyno_timer);
-
-				for (let user_warning of user_warnings)
-					if (user_warning.timer)
-						clearTimeout(user_warning.timer);
-
-				user_warnings = [];
-				dyno_busy = false;
 			}
 
 			onMessageOptionToolbar(e)
@@ -1003,7 +992,7 @@ module.exports = (() =>
 				let data = this.get_warnings(message);
 				if (data.success)
 				{
-					// log(`get_warnings: {user_id: '${data.user_id}', warns: {prev: ${data.warns.prev}, new: ${data.warns.new}, sum: ${data.warns.sum}}}`);
+					log(`get_warnings: {user_id: '${data.user_id}', warns: {prev: ${data.warns.prev}, new: ${data.warns.new}, sum: ${data.warns.sum}}}`, ', user_warnings:', user_warnings);
 				}
 
 				if
@@ -1011,8 +1000,7 @@ module.exports = (() =>
 					&&	user_warnings[data.user_id]
 				)
 				{
-					clearTimeout(user_warnings[data.user_id].timer);
-					user_warnings[data.user_id] = undefined;
+					delete user_warnings[data.user_id];
 
 					if (data.warns.new < 3)
 						return;
