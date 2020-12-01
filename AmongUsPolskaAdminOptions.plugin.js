@@ -31,7 +31,7 @@ module.exports = (() =>
 			author: 'Benio',
 			authorId: '231850998279176193',
 			invite: 'amonguspoland',
-			version: '1.0.1',
+			version: '1.0.2',
 		},
 
 		// added, fixed, improved
