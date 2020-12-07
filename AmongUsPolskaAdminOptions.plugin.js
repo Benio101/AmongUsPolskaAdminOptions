@@ -31,7 +31,7 @@ module.exports = (() =>
 			author: 'Benio',
 			authorId: '231850998279176193',
 			invite: 'amonguspoland',
-			version: '1.0.3',
+			version: '2.0.0',
 		},
 
 		// added, fixed, improved
@@ -113,35 +113,35 @@ module.exports = (() =>
 	const channels =
 	{
 		// Półbogowie
-		do_zrobienia: '755646962962923541',
+		do_zrobienia: '781584196178280460',
 
 		// Cafeteria
-		chat_ogolny: '755646984546811995',
-		szukanie_druzyny: '755646989173129266',
-		szukanie_druzyny_18: '757173602725396520',
+		chat_ogolny: '781584198476759048',
+		szukanie_druzyny: '781584198476759049',
+		szukanie_druzyny_18: '781584198947307550',
 
 		// Multimedia
-		media: '755646992180576319',
-		propozycje: '755646993048666182',
+		media: '781584198947307553',
+		propozycje: '781584198947307554',
 
 		// Tickety
-		rzeczy_do_sprawdzenia: '768960394235609088',
+		rzeczy_do_sprawdzenia: '781584199676592139',
 
 		// Support
-		zgłoszenia: '762748042360913950',
-		pomoc_supportu: '755646995863044168',
-		komendy: '755646959015952476',
-		izolatka_chat: '755646997272199238',
+		zgłoszenia: '781584199676592147',
+		pomoc_supportu: '781584200041365544',
+		komendy: '781584200041365546',
+		izolatka_chat: '781584200041365547',
 	}
 
-	const guild_id = '743475215002107966';
+	const guild_id = '781584193045266439';
 
 	const roles =
 	{
 		// Mute
-		text_mute: '773128188339027968',
-		voice_mute: '755646821682118687',
-		muted: '773152921663176724',
+		text_mute: '781584193125613587',
+		voice_mute: '781584193125613586',
+		dyno_mute: '781584193045266443',
 	}
 
 	const emojis = 
@@ -396,7 +396,7 @@ module.exports = (() =>
 	{
 		tasks.execute_command(`?arole ${user_id} ${roles.text_mute}`);
 		tasks.execute_command(`?arole ${user_id} ${roles.voice_mute}`);
-		tasks.execute_command(`?arole ${user_id} ${roles.muted}`);
+		tasks.execute_command(`?arole ${user_id} ${roles.dyno_mute}`);
 	}
 
 	tasks.report_to_perm_ban = function(user_id, reason)
@@ -424,7 +424,7 @@ module.exports = (() =>
 	{
 		tasks.execute_command(`?arole ${user_id} ${roles.text_mute} -d ${days}d`);
 		tasks.execute_command(`?arole ${user_id} ${roles.voice_mute} -d ${days}d`);
-		tasks.execute_command(`?arole ${user_id} ${roles.muted} -d ${days}d`);
+		tasks.execute_command(`?arole ${user_id} ${roles.dyno_mute} -d ${days}d`);
 	}
 
 	tasks.vmute = function(user_id, days, reason)
