@@ -31,7 +31,7 @@ module.exports = (() =>
 			author: 'Benio',
 			authorId: '231850998279176193',
 			invite: 'amonguspoland',
-			version: '2.0.0',
+			version: '2.0.1',
 		},
 
 		// added, fixed, improved
@@ -146,8 +146,8 @@ module.exports = (() =>
 
 	const emojis = 
 	{
-		blueyes: {id: '750757170168987760', name: 'blueyes'},
-		pinkno: {id: '751074413620887652', name: 'pinkno'},
+		thumb_up: {id: '785648895061131303', name: 'AmongUs_ThumbUp'},
+		thumb_down: {id: '785648881588633620', name: 'AmongUs_ThumbDown'},
 	}
 
 	// ------------------------------------------------------------------------------------------------------------
@@ -987,8 +987,8 @@ module.exports = (() =>
 					&&	BDFDB.UserUtils.can('BAN_MEMBERS')
 					&&	channel.id == channels.zgłoszenia
 					&&	'reactions' in message
-					&&	!has_emoji(message.reactions, emojis.blueyes.name)
-					&&	!has_emoji(message.reactions, emojis.pinkno.name)
+					&&	!has_emoji(message.reactions, emojis.thumb_up.name)
+					&&	!has_emoji(message.reactions, emojis.thumb_down.name)
 					&&	message.content
 				)
 				{
@@ -1002,7 +1002,7 @@ module.exports = (() =>
 							className: BDFDB.disCN.messagetoolbarbutton,
 							onClick: _ =>
 							{
-								tasks.add_reaction(channel.id, message.id, emojis.blueyes);
+								tasks.add_reaction(channel.id, message.id, emojis.thumb_up);
 								tasks.execute_dyno_command(`!ban ${message.content}`);
 							},
 							children: BDFDB.ReactUtils.createElement(BDFDB.LibraryComponents.SvgIcon,
@@ -1024,8 +1024,8 @@ module.exports = (() =>
 						)
 					&&	channel.id == channels.zgłoszenia
 					&&	'reactions' in message
-					&&	!has_emoji(message.reactions, emojis.blueyes.name)
-					&&	!has_emoji(message.reactions, emojis.pinkno.name)
+					&&	!has_emoji(message.reactions, emojis.thumb_up.name)
+					&&	!has_emoji(message.reactions, emojis.thumb_down.name)
 					&&	message.content
 				)
 				{
@@ -1039,7 +1039,7 @@ module.exports = (() =>
 							className: BDFDB.disCN.messagetoolbarbutton,
 							onClick: _ =>
 							{
-								tasks.add_reaction(channel.id, message.id, emojis.blueyes);
+								tasks.add_reaction(channel.id, message.id, emojis.thumb_up);
 								tasks.execute_dyno_command(`!vmute ${message.content}`);
 							},
 							children: BDFDB.ReactUtils.createElement(BDFDB.LibraryComponents.SvgIcon,
@@ -1065,8 +1065,8 @@ module.exports = (() =>
 								)
 						)
 					&&	'reactions' in message
-					&&	!has_emoji(message.reactions, emojis.blueyes.name)
-					&&	!has_emoji(message.reactions, emojis.pinkno.name)
+					&&	!has_emoji(message.reactions, emojis.thumb_up.name)
+					&&	!has_emoji(message.reactions, emojis.thumb_down.name)
 					&&	message.content
 				)
 				{
@@ -1080,7 +1080,7 @@ module.exports = (() =>
 							className: BDFDB.disCN.messagetoolbarbutton,
 							onClick: _ =>
 							{
-								tasks.add_reaction(channel.id, message.id, emojis.blueyes);
+								tasks.add_reaction(channel.id, message.id, emojis.thumb_up);
 							},
 							children: BDFDB.ReactUtils.createElement(BDFDB.LibraryComponents.SvgIcon,
 							{
@@ -1105,8 +1105,8 @@ module.exports = (() =>
 								)
 						)
 					&&	'reactions' in message
-					&&	!has_emoji(message.reactions, emojis.blueyes.name)
-					&&	!has_emoji(message.reactions, emojis.pinkno.name)
+					&&	!has_emoji(message.reactions, emojis.thumb_up.name)
+					&&	!has_emoji(message.reactions, emojis.thumb_down.name)
 					&&	message.content
 				)
 				{
@@ -1120,7 +1120,7 @@ module.exports = (() =>
 							className: BDFDB.disCN.messagetoolbarbutton,
 							onClick: _ =>
 							{
-								tasks.add_reaction(channel.id, message.id, emojis.pinkno);
+								tasks.add_reaction(channel.id, message.id, emojis.thumb_down);
 							},
 							children: BDFDB.ReactUtils.createElement(BDFDB.LibraryComponents.SvgIcon,
 							{
