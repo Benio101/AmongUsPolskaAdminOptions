@@ -31,13 +31,25 @@ module.exports = (() =>
 			author: 'Benio',
 			authorId: '231850998279176193',
 			invite: 'amonguspoland',
-			version: '2.0.1',
+			version: '2.0.3',
 		},
 
 		// added, fixed, improved
 		changeLog:
 		{
-			
+			fixed: {
+				'Łapki': 'Znów powinno działać łapkowanie, odkąd zamieniłem ID na nowe po tym, jak Katie usunęła przypadkiem stare łapki.',
+				'arole': 'Zamieniłem niedziałające ?arole na !vmute / !tmute przy nadawaniu mutów prewencyjnych przy zgłoszeniach.',
+				'vmute': 'Naprawiłem niedziałający vmute nadawany z menu contextowego.',
+				'vmute': 'Ikonka vmuta nie będzie się już pojawiać Trial Supportom.',
+				'vmute': 'Kliknięcie ikonki vmuta powinno teraz poprawnie nakładać vmuta.',
+			},
+			imporved: {
+				'Ban': 'Ikonka bana nie będzie się już pojawiać przy zgłoszeniu do vmuta.',
+				'vmute': 'Ikonka vmuta będzie się pojawiać tylko przy zgłoszeniu do vmuta.',
+				'Menu contextowe': 'Menu contextowe "Among Us Polska" nie będzie się już pojawiać na innych serwerach.',
+				'Zbędne logi': 'Usunąłem niepotrzebne logi (widoczne w konsoli przy debugowaniu).',
+			}
 		},
 
 		// milliseconds
@@ -146,8 +158,8 @@ module.exports = (() =>
 
 	const emojis = 
 	{
-		thumb_up: {id: '785648895061131303', name: 'AmongUs_ThumbUp'},
-		thumb_down: {id: '785648881588633620', name: 'AmongUs_ThumbDown'},
+		thumb_up: {id: '786372607116312586', name: 'ThumbUp'},
+		thumb_down: {id: '786372659884589056', name: 'ThumbDown'},
 	}
 
 	// ------------------------------------------------------------------------------------------------------------
@@ -293,6 +305,7 @@ module.exports = (() =>
 	let discord_actions = {};
 	discord_actions.add_reaction = BdApi.findModuleByProps('addReaction').addReaction;
 	discord_actions.getUser = BdApi.findModuleByProps('getUser').getUser;
+	discord_actions.getLastSelectedGuildId = BdApi.findModuleByProps('getLastSelectedGuildId').getLastSelectedGuildId;
 
 	// ------------------------------------------------------------------------------------------------------------
 	// ------------------------------------ Actions ---------------------------------------------------------------
@@ -394,9 +407,10 @@ module.exports = (() =>
 
 	tasks.perm_mute = function(user_id)
 	{
-		tasks.execute_command(`?arole ${user_id} ${roles.text_mute}`);
-		tasks.execute_command(`?arole ${user_id} ${roles.voice_mute}`);
-		tasks.execute_command(`?arole ${user_id} ${roles.dyno_mute}`);
+		if (GBDFDB.UserUtils.can('MUTE_MEMBERS'))
+			tasks.execute_command(`!vmute ${user_id} 30d ${reason}`);
+		else
+			tasks.execute_command(`!tmute ${user_id} 30d ${reason}`);
 	}
 
 	tasks.report_to_perm_ban = function(user_id, reason)
@@ -411,7 +425,7 @@ module.exports = (() =>
 		else
 		{
 			tasks.report_to_temp_ban(user_id, days, reason);
-			tasks.temp_mute(user_id, days);
+			tasks.temp_mute(user_id, days, reason);
 		}
 	}
 
@@ -420,17 +434,18 @@ module.exports = (() =>
 		tasks.send_message(channels.zgłoszenia, `${user_id} ${days}d ${reason}`);
 	}
 
-	tasks.temp_mute = function(user_id, days)
+	tasks.temp_mute = function(user_id, days, reason)
 	{
-		tasks.execute_command(`?arole ${user_id} ${roles.text_mute} -d ${days}d`);
-		tasks.execute_command(`?arole ${user_id} ${roles.voice_mute} -d ${days}d`);
-		tasks.execute_command(`?arole ${user_id} ${roles.dyno_mute} -d ${days}d`);
+		if (GBDFDB.UserUtils.can('MUTE_MEMBERS'))
+			tasks.execute_command(`!vmute ${user_id} ${days}d ${reason}`);
+		else
+			tasks.execute_command(`!tmute ${user_id} ${days}d ${reason}`);
 	}
 
 	tasks.vmute = function(user_id, days, reason)
 	{
 		if (GBDFDB.UserUtils.can('MUTE_MEMBERS'))
-			tasks.execute_dyno_command(`!vmute ${user_id} ${user_id}d ${reason}`);
+			tasks.execute_dyno_command(`!vmute ${user_id} ${days}d ${reason}`);
 		else
 		{
 			tasks.report_to_vmute(user_id, days, reason);
@@ -990,6 +1005,7 @@ module.exports = (() =>
 					&&	!has_emoji(message.reactions, emojis.thumb_up.name)
 					&&	!has_emoji(message.reactions, emojis.thumb_down.name)
 					&&	message.content
+					&&	!message.content.startsWith('vmute ')
 				)
 				{
 					children.unshift(BDFDB.ReactUtils.createElement(BDFDB.LibraryComponents.TooltipContainer,
@@ -1020,13 +1036,14 @@ module.exports = (() =>
 					&&	author.id != BDFDB.UserUtils.me.id
 					&&	(
 								BDFDB.UserUtils.can('BAN_MEMBERS')
-							||	BDFDB.UserUtils.can('MANAGE_MESSAGES')
+							||	BDFDB.UserUtils.can('MUTE_MEMBERS')
 						)
 					&&	channel.id == channels.zgłoszenia
 					&&	'reactions' in message
 					&&	!has_emoji(message.reactions, emojis.thumb_up.name)
 					&&	!has_emoji(message.reactions, emojis.thumb_down.name)
 					&&	message.content
+					&&	message.content.startsWith('vmute ')
 				)
 				{
 					children.unshift(BDFDB.ReactUtils.createElement(BDFDB.LibraryComponents.TooltipContainer,
@@ -1040,7 +1057,7 @@ module.exports = (() =>
 							onClick: _ =>
 							{
 								tasks.add_reaction(channel.id, message.id, emojis.thumb_up);
-								tasks.execute_dyno_command(`!vmute ${message.content}`);
+								tasks.execute_dyno_command(`!${message.content}`);
 							},
 							children: BDFDB.ReactUtils.createElement(BDFDB.LibraryComponents.SvgIcon,
 							{
@@ -1295,6 +1312,9 @@ module.exports = (() =>
 		
 			onUserContextMenu(e)
 			{
+				if (discord_actions.getLastSelectedGuildId() != guild_id)
+					return;
+				
 				if
 				(		e !== Object(e)
 					||	! 'instance' in e
@@ -1331,7 +1351,6 @@ module.exports = (() =>
 										label: 'Zmutuj (tekstowo) na 3 dni',
 										id: 'tmute-3d',
 										action: _ => {
-											console.log(user);
 											BdApi.showConfirmationModal(
 												`Mute (tekstowy) — 3 dni`, action_popup__get_user_header(user.id, user.tag).concat([
 													BDFDB.ReactUtils.createElement(BDFDB.LibraryComponents.TextInput, {
@@ -1377,7 +1396,6 @@ module.exports = (() =>
 										label: 'Zmutuj (tekstowo) na 7 dni',
 										id: 'tmute-7d',
 										action: _ => {
-											console.log(user);
 											BdApi.showConfirmationModal(
 												`Mute (tekstowy) — 7 dni`, action_popup__get_user_header(user.id, user.tag).concat([
 													BDFDB.ReactUtils.createElement(BDFDB.LibraryComponents.TextInput, {
@@ -1423,7 +1441,6 @@ module.exports = (() =>
 										label: 'Zmutuj (tekstowo) na 14 dni',
 										id: 'tmute-14d',
 										action: _ => {
-											console.log(user);
 											BdApi.showConfirmationModal(
 												`Mute (tekstowy) — 14 dni`, action_popup__get_user_header(user.id, user.tag).concat([
 													BDFDB.ReactUtils.createElement(BDFDB.LibraryComponents.TextInput, {
@@ -1470,7 +1487,6 @@ module.exports = (() =>
 										label: 'Zmutuj (głosowo) na 3 dni',
 										id: 'vmute-3d',
 										action: _ => {
-											console.log(user);
 											BdApi.showConfirmationModal(
 												`Mute (głosowy) — 3 dni`, action_popup__get_user_header(user.id, user.tag).concat([
 													BDFDB.ReactUtils.createElement(BDFDB.LibraryComponents.TextInput, {
@@ -1516,7 +1532,6 @@ module.exports = (() =>
 										label: 'Zmutuj (głosowo) na 7 dni',
 										id: 'vmute-7d',
 										action: _ => {
-											console.log(user);
 											BdApi.showConfirmationModal(
 												`Mute (głosowy) — 7 dni`, action_popup__get_user_header(user.id, user.tag).concat([
 													BDFDB.ReactUtils.createElement(BDFDB.LibraryComponents.TextInput, {
@@ -1562,7 +1577,6 @@ module.exports = (() =>
 										label: 'Zmutuj (głosowo) na 14 dni',
 										id: 'vmute-14d',
 										action: _ => {
-											console.log(user);
 											BdApi.showConfirmationModal(
 												`Mute (głosowy) — 14 dni`, action_popup__get_user_header(user.id, user.tag).concat([
 													BDFDB.ReactUtils.createElement(BDFDB.LibraryComponents.TextInput, {
@@ -1609,7 +1623,6 @@ module.exports = (() =>
 										label: 'Zbanuj na 3 dni',
 										id: 'ban-3d',
 										action: _ => {
-											console.log(user);
 											BdApi.showConfirmationModal(
 												`Ban — 3 dni`, action_popup__get_user_header(user.id, user.tag).concat([
 													BDFDB.ReactUtils.createElement(BDFDB.LibraryComponents.TextInput, {
@@ -1655,7 +1668,6 @@ module.exports = (() =>
 										label: 'Zbanuj na 7 dni',
 										id: 'ban-7d',
 										action: _ => {
-											console.log(user);
 											BdApi.showConfirmationModal(
 												`Ban — 7 dni`, action_popup__get_user_header(user.id, user.tag).concat([
 													BDFDB.ReactUtils.createElement(BDFDB.LibraryComponents.TextInput, {
@@ -1701,7 +1713,6 @@ module.exports = (() =>
 										label: 'Zbanuj na 14 dni',
 										id: 'ban-14d',
 										action: _ => {
-											console.log(user);
 											BdApi.showConfirmationModal(
 												`Ban — 14 dni`, action_popup__get_user_header(user.id, user.tag).concat([
 													BDFDB.ReactUtils.createElement(BDFDB.LibraryComponents.TextInput, {
@@ -1747,7 +1758,6 @@ module.exports = (() =>
 										label: 'Zbanuj permanentnie',
 										id: 'perm-ban',
 										action: _ => {
-											console.log(user);
 											BdApi.showConfirmationModal(
 												`Ban permanentny`, action_popup__get_user_header(user.id, user.tag).concat([
 													BDFDB.ReactUtils.createElement(BDFDB.LibraryComponents.TextInput, {
