@@ -31,7 +31,7 @@ module.exports = (() =>
 			author: 'Benio',
 			authorId: '231850998279176193',
 			invite: 'amonguspoland',
-			version: '2.0.4',
+			version: '2.0.5',
 		},
 
 		// added, fixed, improved
@@ -41,8 +41,8 @@ module.exports = (() =>
 				'Łapki': 'Znów powinno działać łapkowanie, odkąd zamieniłem ID na nowe po tym, jak Katie usunęła przypadkiem stare łapki',
 				'arole': 'Zamieniłem niedziałające ?arole na !vmute / !tmute przy nadawaniu mutów prewencyjnych przy zgłoszeniach',
 				'vmute': 'Naprawiłem niedziałający vmute nadawany z menu contextowego',
-				'vmute': 'Ikonka vmuta nie będzie się już pojawiać Trial Supportom',
-				'vmute': 'Kliknięcie ikonki vmuta powinno teraz poprawnie nakładać vmuta',
+				'vmute​': 'Ikonka vmuta nie będzie się już pojawiać Trial Supportom',
+				'vmute​​': 'Kliknięcie ikonki vmuta powinno teraz poprawnie nakładać vmuta',
 			},
 			improved: {
 				'Ban': 'Ikonka bana nie będzie się już pojawiać przy zgłoszeniu do vmuta',
