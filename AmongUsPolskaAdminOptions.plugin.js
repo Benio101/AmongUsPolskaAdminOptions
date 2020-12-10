@@ -31,25 +31,25 @@ module.exports = (() =>
 			author: 'Benio',
 			authorId: '231850998279176193',
 			invite: 'amonguspoland',
-			version: '2.0.3',
+			version: '2.0.4',
 		},
 
 		// added, fixed, improved
 		changeLog:
 		{
 			fixed: {
-				'Łapki': 'Znów powinno działać łapkowanie, odkąd zamieniłem ID na nowe po tym, jak Katie usunęła przypadkiem stare łapki.',
-				'arole': 'Zamieniłem niedziałające ?arole na !vmute / !tmute przy nadawaniu mutów prewencyjnych przy zgłoszeniach.',
-				'vmute': 'Naprawiłem niedziałający vmute nadawany z menu contextowego.',
-				'vmute': 'Ikonka vmuta nie będzie się już pojawiać Trial Supportom.',
-				'vmute': 'Kliknięcie ikonki vmuta powinno teraz poprawnie nakładać vmuta.',
+				'Łapki': 'Znów powinno działać łapkowanie, odkąd zamieniłem ID na nowe po tym, jak Katie usunęła przypadkiem stare łapki',
+				'arole': 'Zamieniłem niedziałające ?arole na !vmute / !tmute przy nadawaniu mutów prewencyjnych przy zgłoszeniach',
+				'vmute': 'Naprawiłem niedziałający vmute nadawany z menu contextowego',
+				'vmute': 'Ikonka vmuta nie będzie się już pojawiać Trial Supportom',
+				'vmute': 'Kliknięcie ikonki vmuta powinno teraz poprawnie nakładać vmuta',
 			},
-			imporved: {
-				'Ban': 'Ikonka bana nie będzie się już pojawiać przy zgłoszeniu do vmuta.',
-				'vmute': 'Ikonka vmuta będzie się pojawiać tylko przy zgłoszeniu do vmuta.',
-				'Menu contextowe': 'Menu contextowe "Among Us Polska" nie będzie się już pojawiać na innych serwerach.',
-				'Zbędne logi': 'Usunąłem niepotrzebne logi (widoczne w konsoli przy debugowaniu).',
-			}
+			improved: {
+				'Ban': 'Ikonka bana nie będzie się już pojawiać przy zgłoszeniu do vmuta',
+				'vmute': 'Ikonka vmuta będzie się pojawiać tylko przy zgłoszeniu do vmuta',
+				'Menu contextowe': 'Menu contextowe "Among Us Polska" nie będzie się już pojawiać na innych serwerach',
+				'Zbędne logi': 'Usunąłem niepotrzebne logi (widoczne w konsoli przy debugowaniu)',
+			},
 		},
 
 		// milliseconds
