@@ -31,15 +31,18 @@ module.exports = (() =>
 			author: 'Benio',
 			authorId: '231850998279176193',
 			invite: 'amongusreverse',
-			version: '2.1.0',
+			version: '2.1.1',
 		},
 
 		// added, fixed, improved
 		changeLog:
 		{
 			improved: {
-				'Nazwa pluginu': 'Nazwa pluginu została zaktualizowana',
+				'Nazwa w menu contextowym': 'Nazwa w menu contextowym zaktualizowana z "Among Us Admin" na "Reverse┋Kary"',
 			},
+			added: {
+				'Ostrzeżenie': 'Dodano opcję do wlepiania warnów z menu kontekstowego',
+			}
 		},
 
 		// milliseconds
@@ -148,8 +151,8 @@ module.exports = (() =>
 
 	const emojis = 
 	{
-		thumb_up: {id: '786372607116312586', name: 'ThumbUp'},
-		thumb_down: {id: '786372659884589056', name: 'ThumbDown'},
+		thumb_up: {id: '788231468732252160', name: 'yes'},
+		thumb_down: {id: '788231485625729034', name: 'no'},
 	}
 
 	// ------------------------------------------------------------------------------------------------------------
@@ -170,12 +173,14 @@ module.exports = (() =>
 			background: #E04040;
 		}
 
+		#user-context-${config.info.name + '-UserContextMenu--warn'},
 		#user-context-${config.info.name + '-UserContextMenu--tmute-3d'},
 		#user-context-${config.info.name + '-UserContextMenu--tmute-7d'},
 		#user-context-${config.info.name + '-UserContextMenu--tmute-14d'}
 		{
 			color: #E0E040;
 		}
+		#user-context-${config.info.name + '-UserContextMenu--warn'}.da-focused,
 		#user-context-${config.info.name + '-UserContextMenu--tmute-3d'}.da-focused,
 		#user-context-${config.info.name + '-UserContextMenu--tmute-7d'}.da-focused,
 		#user-context-${config.info.name + '-UserContextMenu--tmute-14d'}.da-focused
@@ -1333,12 +1338,57 @@ module.exports = (() =>
 				children.splice(index > -1 ? index : children.length, 0, BDFDB.ContextMenuUtils.createItem(BDFDB.LibraryComponents.MenuItems.MenuGroup, {
 					children: [
 						BDFDB.ContextMenuUtils.createItem(BDFDB.LibraryComponents.MenuItems.MenuItem, {
-							label: 'Among Us Polska',
+							label: 'Reverse┋Kary',
 							id: config.info.name + '-UserContextMenu',
 							children: BDFDB.ContextMenuUtils.createItem(BDFDB.LibraryComponents.MenuItems.MenuGroup, {
 								children: [
 									BDFDB.ContextMenuUtils.createItem(BDFDB.LibraryComponents.MenuItems.MenuItem, {
-										label: 'Zmutuj (tekstowo) na 3 dni',
+										label: 'Ostrzeżenie',
+										id: 'warn',
+										action: _ => {
+											BdApi.showConfirmationModal(
+												`Ostrzeżenie`, action_popup__get_user_header(user.id, user.tag).concat([
+													BDFDB.ReactUtils.createElement(BDFDB.LibraryComponents.TextInput, {
+														autoFocus: true,
+														errorMessage: 'Musisz podać powód ostrzeżenia.',
+														value: '',
+														placeholder: 'Powód ostrzeżenia',
+														size: BDFDB.LibraryComponents.TextInput.Sizes.DEFAULT,
+														maxLength: 1024,
+														id: config.info.name + '-warn-reason',
+														success: false,
+														onChange: (value, instance) => {
+															if (value.length) {
+																instance.props.errorMessage = null;
+																instance.props.success = true;
+															} else {
+																instance.props.errorMessage = 'Musisz podać powód ostrzeżenia.';
+																instance.props.success = false;
+															}
+														},
+													}),
+												]), {
+													danger: true,
+													confirmText: 'Warn',
+													cancelText: 'Anuluj',
+													onConfirm: function() {
+														let reason = document.getElementById(config.info.name + '-warn-reason').value;
+														if (!reason)
+														{
+															BdApi.showToast('Warn nieudany: Brak powodu.', {type: 'error'});
+															return;
+														}
+
+														tasks.warn(user.id, reason);
+													},
+												}
+											);
+
+											setTimeout(function(){document.getElementById(config.info.name + '-warn-reason').focus();}, 0);
+										}
+									}),
+									BDFDB.ContextMenuUtils.createItem(BDFDB.LibraryComponents.MenuItems.MenuItem, {
+										label: 'Mute (tekstowy) na 3 dni',
 										id: 'tmute-3d',
 										action: _ => {
 											BdApi.showConfirmationModal(
@@ -1383,7 +1433,7 @@ module.exports = (() =>
 										}
 									}),
 									BDFDB.ContextMenuUtils.createItem(BDFDB.LibraryComponents.MenuItems.MenuItem, {
-										label: 'Zmutuj (tekstowo) na 7 dni',
+										label: 'Mute (tekstowy) na 7 dni',
 										id: 'tmute-7d',
 										action: _ => {
 											BdApi.showConfirmationModal(
@@ -1428,7 +1478,7 @@ module.exports = (() =>
 										}
 									}),
 									BDFDB.ContextMenuUtils.createItem(BDFDB.LibraryComponents.MenuItems.MenuItem, {
-										label: 'Zmutuj (tekstowo) na 14 dni',
+										label: 'Mute (tekstowy) na 14 dni',
 										id: 'tmute-14d',
 										action: _ => {
 											BdApi.showConfirmationModal(
@@ -1474,7 +1524,7 @@ module.exports = (() =>
 									}),
 									BDFDB.ContextMenuUtils.createItem(BDFDB.LibraryComponents.FormComponents.FormDivider, {id: 'separator-between-tmute-and-vmute'}),
 									BDFDB.ContextMenuUtils.createItem(BDFDB.LibraryComponents.MenuItems.MenuItem, {
-										label: 'Zmutuj (głosowo) na 3 dni',
+										label: 'Mute (głosowy) na 3 dni',
 										id: 'vmute-3d',
 										action: _ => {
 											BdApi.showConfirmationModal(
@@ -1519,7 +1569,7 @@ module.exports = (() =>
 										}
 									}),
 									BDFDB.ContextMenuUtils.createItem(BDFDB.LibraryComponents.MenuItems.MenuItem, {
-										label: 'Zmutuj (głosowo) na 7 dni',
+										label: 'Mute (głosowy) na 7 dni',
 										id: 'vmute-7d',
 										action: _ => {
 											BdApi.showConfirmationModal(
@@ -1564,7 +1614,7 @@ module.exports = (() =>
 										}
 									}),
 									BDFDB.ContextMenuUtils.createItem(BDFDB.LibraryComponents.MenuItems.MenuItem, {
-										label: 'Zmutuj (głosowo) na 14 dni',
+										label: 'Mute (głosowy) na 14 dni',
 										id: 'vmute-14d',
 										action: _ => {
 											BdApi.showConfirmationModal(
@@ -1610,7 +1660,7 @@ module.exports = (() =>
 									}),
 									BDFDB.ContextMenuUtils.createItem(BDFDB.LibraryComponents.FormComponents.FormDivider, {id: 'separator-between-vmute-and-ban'}),
 									BDFDB.ContextMenuUtils.createItem(BDFDB.LibraryComponents.MenuItems.MenuItem, {
-										label: 'Zbanuj na 3 dni',
+										label: 'Ban na 3 dni',
 										id: 'ban-3d',
 										action: _ => {
 											BdApi.showConfirmationModal(
@@ -1655,7 +1705,7 @@ module.exports = (() =>
 										}
 									}),
 									BDFDB.ContextMenuUtils.createItem(BDFDB.LibraryComponents.MenuItems.MenuItem, {
-										label: 'Zbanuj na 7 dni',
+										label: 'Ban na 7 dni',
 										id: 'ban-7d',
 										action: _ => {
 											BdApi.showConfirmationModal(
@@ -1700,7 +1750,7 @@ module.exports = (() =>
 										}
 									}),
 									BDFDB.ContextMenuUtils.createItem(BDFDB.LibraryComponents.MenuItems.MenuItem, {
-										label: 'Zbanuj na 14 dni',
+										label: 'Ban na 14 dni',
 										id: 'ban-14d',
 										action: _ => {
 											BdApi.showConfirmationModal(
@@ -1745,7 +1795,7 @@ module.exports = (() =>
 										}
 									}),
 									BDFDB.ContextMenuUtils.createItem(BDFDB.LibraryComponents.MenuItems.MenuItem, {
-										label: 'Zbanuj permanentnie',
+										label: 'Ban permanentny',
 										id: 'perm-ban',
 										action: _ => {
 											BdApi.showConfirmationModal(
