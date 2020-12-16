@@ -37,12 +37,7 @@ module.exports = (() =>
 		// added, fixed, improved
 		changeLog:
 		{
-			improved: {
-				'Nazwa w menu contextowym': 'Nazwa w menu contextowym zaktualizowana z "Among Us Admin" na "Reverse┋Kary"',
-			},
-			added: {
-				'Ostrzeżenie': 'Dodano opcję do wlepiania warnów z menu kontekstowego',
-			}
+			
 		},
 
 		// milliseconds
