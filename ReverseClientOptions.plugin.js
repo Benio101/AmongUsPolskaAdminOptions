@@ -31,7 +31,7 @@ module.exports = (() =>
 			author: 'Benio',
 			authorId: '231850998279176193',
 			invite: 'amongusreverse',
-			version: '2.1.1',
+			version: '2.1.2',
 		},
 
 		// added, fixed, improved
@@ -120,6 +120,9 @@ module.exports = (() =>
 		// Półbogowie
 		do_zrobienia: '781584196178280460',
 
+		// Rekrutacja
+		podania: '781584198476759040',
+
 		// Cafeteria
 		chat_ogolny: '781584198476759048',
 		szukanie_druzyny: '781584198476759049',
@@ -137,6 +140,12 @@ module.exports = (() =>
 		pomoc_supportu: '781584200041365544',
 		komendy: '781584200041365546',
 		izolatka_chat: '781584200041365547',
+
+		// Liga
+		liga_zapisy: '781584210032590898',
+		liga_chat: '781584210032590899',
+		liga_media: '781584210032590900',
+		liga_zgłoszenia: '781584210032590902',
 	}
 
 	const guild_id = '781584193045266439';
@@ -664,8 +673,10 @@ module.exports = (() =>
 					&&	author.id != BDFDB.UserUtils.me.id
 					&&	!BDFDB.UserUtils.can('MANAGE_MESSAGES', author.id)
 					&&	(
-								channel.id == channels.szukanie_druzyny
+								channel.id == channels.podania
+							||	channel.id == channels.szukanie_druzyny
 							||	channel.id == channels.szukanie_druzyny_18
+							||	channel.id == channels.liga_zapisy
 						)
 				)
 				{
@@ -734,6 +745,8 @@ module.exports = (() =>
 							||	channel.id == channels.media
 							||	channel.id == channels.propozycje
 							||	channel.id == channels.pomoc_supportu
+							||	channel.id == channels.liga_chat
+							||	channel.id == channels.liga_media
 						)
 				)
 				{
@@ -769,6 +782,7 @@ module.exports = (() =>
 							||	channel.id == channels.propozycje
 							||	channel.id == channels.pomoc_supportu
 							||	channel.id == channels.izolatka_chat
+							||	channel.id == channels.liga_chat
 						)
 				)
 				{
@@ -807,6 +821,7 @@ module.exports = (() =>
 							||	channel.id == channels.propozycje
 							||	channel.id == channels.pomoc_supportu
 							||	channel.id == channels.izolatka_chat
+							||	channel.id == channels.liga_chat
 						)
 				)
 				{
@@ -841,6 +856,7 @@ module.exports = (() =>
 								channel.id == channels.propozycje
 							||	channel.id == channels.pomoc_supportu
 							||	channel.id == channels.izolatka_chat
+							||	channel.id == channels.liga_zgłoszenia
 						)
 				)
 				{
@@ -883,6 +899,8 @@ module.exports = (() =>
 							||	channel.id == channels.propozycje
 							||	channel.id == channels.pomoc_supportu
 							||	channel.id == channels.izolatka_chat
+							||	channel.id == channels.liga_chat
+							||	channel.id == channels.liga_media
 						)
 				)
 				{
@@ -927,7 +945,10 @@ module.exports = (() =>
 				(		!expanded
 					&&	author.id != BDFDB.UserUtils.me.id
 					&&	!BDFDB.UserUtils.can('MANAGE_MESSAGES', author.id)
-					&&	channel.id == channels.media
+					&&	(
+								channel.id == channels.media
+							||	channel.id == channels.liga_media
+						)
 				)
 				{
 					children.unshift(BDFDB.ReactUtils.createElement(BDFDB.LibraryComponents.TooltipContainer,
@@ -965,6 +986,8 @@ module.exports = (() =>
 							||	channel.id == channels.propozycje
 							||	channel.id == channels.pomoc_supportu
 							||	channel.id == channels.izolatka_chat
+							||	channel.id == channels.liga_chat
+							||	channel.id == channels.liga_media
 						)
 				)
 				{
@@ -1075,6 +1098,8 @@ module.exports = (() =>
 										channel.id == channels.pomoc_supportu
 									&&	!BDFDB.UserUtils.can('MANAGE_MESSAGES', author.id)
 								)
+							||	channel.id == channels.liga_zapisy
+							||	channel.id == channels.liga_zgłoszenia
 						)
 					&&	'reactions' in message
 					&&	!has_emoji(message.reactions, emojis.thumb_up.name)
@@ -1115,6 +1140,8 @@ module.exports = (() =>
 										channel.id == channels.pomoc_supportu
 									&&	!BDFDB.UserUtils.can('MANAGE_MESSAGES', author.id)
 								)
+							||	channel.id == channels.liga_zapisy
+							||	channel.id == channels.liga_zgłoszenia
 						)
 					&&	'reactions' in message
 					&&	!has_emoji(message.reactions, emojis.thumb_up.name)
