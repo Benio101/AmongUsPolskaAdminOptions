@@ -31,13 +31,16 @@ module.exports = (() =>
 			author: 'Benio',
 			authorId: '231850998279176193',
 			invite: 'amongusreverse',
-			version: '2.1.2',
+			version: '2.1.3',
 		},
 
 		// added, fixed, improved
 		changeLog:
 		{
-			
+			added:
+			{
+				'Nowa opcja': '`Notes` w menu contextowym'
+			}
 		},
 
 		// milliseconds
@@ -175,6 +178,15 @@ module.exports = (() =>
 		{
 			color: #E0E0E0;
 			background: #E04040;
+		}
+
+		#user-context-${config.info.name + '-UserContextMenu--note'}
+		{
+			color: #4090E0;
+		}
+		#user-context-${config.info.name + '-UserContextMenu--note'}.da-focused
+		{
+			background: #4090E040;
 		}
 
 		#user-context-${config.info.name + '-UserContextMenu--warn'},
@@ -1364,6 +1376,52 @@ module.exports = (() =>
 							id: config.info.name + '-UserContextMenu',
 							children: BDFDB.ContextMenuUtils.createItem(BDFDB.LibraryComponents.MenuItems.MenuGroup, {
 								children: [
+									BDFDB.ContextMenuUtils.createItem(BDFDB.LibraryComponents.MenuItems.MenuItem, {
+										label: 'Notatka',
+										id: 'note',
+										action: _ => {
+											BdApi.showConfirmationModal(
+												`Notatka`, action_popup__get_user_header(user.id, user.tag).concat([
+													BDFDB.ReactUtils.createElement(BDFDB.LibraryComponents.TextInput, {
+														autoFocus: true,
+														errorMessage: 'Musisz podać treść notatki.',
+														value: '',
+														placeholder: 'Treść notatki',
+														size: BDFDB.LibraryComponents.TextInput.Sizes.DEFAULT,
+														maxLength: 1024,
+														id: config.info.name + '-note-text',
+														success: false,
+														onChange: (value, instance) => {
+															if (value.length) {
+																instance.props.errorMessage = null;
+																instance.props.success = true;
+															} else {
+																instance.props.errorMessage = 'Musisz podać treść notatki.';
+																instance.props.success = false;
+															}
+														},
+													}),
+												]), {
+													danger: true,
+													confirmText: 'Note',
+													cancelText: 'Anuluj',
+													onConfirm: function() {
+														let reason = document.getElementById(config.info.name + '-note-text').value;
+														if (!reason)
+														{
+															BdApi.showToast('Notatka niezapisana: Brak treści.', {type: 'error'});
+															return;
+														}
+
+														tasks.warn(user.id, reason);
+													},
+												}
+											);
+
+											setTimeout(function(){document.getElementById(config.info.name + '-note-text').focus();}, 0);
+										}
+									}),
+									BDFDB.ContextMenuUtils.createItem(BDFDB.LibraryComponents.FormComponents.FormDivider, {id: 'separator-between-note-and-warn'}),
 									BDFDB.ContextMenuUtils.createItem(BDFDB.LibraryComponents.MenuItems.MenuItem, {
 										label: 'Ostrzeżenie',
 										id: 'warn',
