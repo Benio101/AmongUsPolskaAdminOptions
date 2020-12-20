@@ -31,7 +31,7 @@ module.exports = (() =>
 			author: 'Benio',
 			authorId: '231850998279176193',
 			invite: 'amongusreverse',
-			version: '2.1.3',
+			version: '2.1.4',
 		},
 
 		// added, fixed, improved
@@ -403,6 +403,11 @@ module.exports = (() =>
 		tasks.execute_dyno_command(`!warnings ${user_id}`);
 
 		user_warnings[user_id] = true;
+	}
+
+	tasks.note = function(user_id, reason)
+	{
+		tasks.execute_dyno_command(`!note ${user_id} ${reason}`);
 	}
 
 	tasks.perm_ban = function(user_id, reason)
@@ -1413,7 +1418,7 @@ module.exports = (() =>
 															return;
 														}
 
-														tasks.warn(user.id, reason);
+														tasks.note(user.id, reason);
 													},
 												}
 											);
