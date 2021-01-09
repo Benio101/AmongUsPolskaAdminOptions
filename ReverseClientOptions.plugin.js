@@ -31,15 +31,15 @@ module.exports = (() =>
 			author: 'Benio',
 			authorId: '231850998279176193',
 			invite: 'amongusreverse',
-			version: '2.1.4',
+			version: '2.1.5',
 		},
 
 		// added, fixed, improved
 		changeLog:
 		{
-			added:
+			fixed:
 			{
-				'Nowa opcja': '`Notes` w menu contextowym'
+				'Reakcje': '`Zaktualizowano ID emotek (tak/nie)'
 			}
 		},
 
@@ -158,8 +158,8 @@ module.exports = (() =>
 
 	const emojis = 
 	{
-		thumb_up: {id: '788231468732252160', name: 'yes'},
-		thumb_down: {id: '788231485625729034', name: 'no'},
+		thumb_up: {id: '797226341354176572', name: 'yes'},
+		thumb_down: {id: '797226362930462742', name: 'no'},
 	}
 
 	// ------------------------------------------------------------------------------------------------------------
