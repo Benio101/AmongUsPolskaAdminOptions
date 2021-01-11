@@ -8,7 +8,7 @@
  * @source https://raw.githubusercontent.com/Benio101/ReverseClientOptions/main/ReverseClientOptions.plugin.js
  * @author Benio
  * @authorId 231850998279176193
- * @invite amongusreverse
+ * @invite reversecommunity
  */
 
 module.exports = (() =>
@@ -30,8 +30,8 @@ module.exports = (() =>
 			source: 'https://raw.githubusercontent.com/Benio101/ReverseClientOptions/main/ReverseClientOptions.plugin.js',
 			author: 'Benio',
 			authorId: '231850998279176193',
-			invite: 'amongusreverse',
-			version: '2.1.5',
+			invite: 'reversecommunity',
+			version: '2.1.6',
 		},
 
 		// added, fixed, improved
@@ -39,7 +39,7 @@ module.exports = (() =>
 		{
 			fixed:
 			{
-				'Reakcje': '`Zaktualizowano ID emotek (tak/nie)'
+				'Link': '`Zaktualizowano link do serwera'
 			}
 		},
 
