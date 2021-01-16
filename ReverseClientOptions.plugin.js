@@ -31,15 +31,15 @@ module.exports = (() =>
 			author: 'Benio',
 			authorId: '231850998279176193',
 			invite: 'reversecommunity',
-			version: '2.1.6',
+			version: '3.0.0',
 		},
 
 		// added, fixed, improved
 		changeLog:
 		{
-			fixed:
+			improved:
 			{
-				'Link': '`Zaktualizowano link do serwera'
+				'Bot': '`Zmieniono bota z Dyno na Reverse Bota'
 			}
 		},
 
@@ -47,7 +47,6 @@ module.exports = (() =>
 		time:
 		{
 			starting_delay:            250,
-			waiting_for_dyno_timeout: 60e3,
 
 			tick_interval:            {min: 500, max: 1e3},
 			sending_message_timeout:  {min: 2e3, max: 4e3},
@@ -153,7 +152,6 @@ module.exports = (() =>
 		// Mute
 		text_mute: '781584193125613587',
 		voice_mute: '781584193125613586',
-		dyno_mute: '781584193045266443',
 	}
 
 	const emojis = 
@@ -170,67 +168,135 @@ module.exports = (() =>
 	`
 		.${config.info.name + '-MessageOptionToolbar-button'}{}
 
-		#user-context-${config.info.name + '-UserContextMenu'}
+		#user-context-${config.info.name + '-Kary-UserContextMenu'}
 		{
 			color: #E04040;
 		}
-		#user-context-${config.info.name + '-UserContextMenu'}.da-focused
+		#user-context-${config.info.name + '-Kary-UserContextMenu'}.da-focused
 		{
 			color: #E0E0E0;
 			background: #E04040;
 		}
 
-		#user-context-${config.info.name + '-UserContextMenu--note'}
+		#user-context-${config.info.name + '-Kary-UserContextMenu--note'}
 		{
 			color: #4090E0;
 		}
-		#user-context-${config.info.name + '-UserContextMenu--note'}.da-focused
+		#user-context-${config.info.name + '-Kary-UserContextMenu--note'}.da-focused
 		{
 			background: #4090E040;
 		}
 
-		#user-context-${config.info.name + '-UserContextMenu--warn'},
-		#user-context-${config.info.name + '-UserContextMenu--tmute-3d'},
-		#user-context-${config.info.name + '-UserContextMenu--tmute-7d'},
-		#user-context-${config.info.name + '-UserContextMenu--tmute-14d'}
+		#user-context-${config.info.name + '-Kary-UserContextMenu--twarn'},
+		#user-context-${config.info.name + '-Kary-UserContextMenu--tmute-2d'},
+		#user-context-${config.info.name + '-Kary-UserContextMenu--tmute-4d'},
+		#user-context-${config.info.name + '-Kary-UserContextMenu--tmute-8d'}
 		{
 			color: #E0E040;
 		}
-		#user-context-${config.info.name + '-UserContextMenu--warn'}.da-focused,
-		#user-context-${config.info.name + '-UserContextMenu--tmute-3d'}.da-focused,
-		#user-context-${config.info.name + '-UserContextMenu--tmute-7d'}.da-focused,
-		#user-context-${config.info.name + '-UserContextMenu--tmute-14d'}.da-focused
+		#user-context-${config.info.name + '-Kary-UserContextMenu--twarn'}.da-focused,
+		#user-context-${config.info.name + '-Kary-UserContextMenu--tmute-2d'}.da-focused,
+		#user-context-${config.info.name + '-Kary-UserContextMenu--tmute-4d'}.da-focused,
+		#user-context-${config.info.name + '-Kary-UserContextMenu--tmute-8d'}.da-focused
 		{
 			background: #E0E04040;
 		}
 
-		#user-context-${config.info.name + '-UserContextMenu--vmute-3d'},
-		#user-context-${config.info.name + '-UserContextMenu--vmute-7d'},
-		#user-context-${config.info.name + '-UserContextMenu--vmute-14d'}
+		#user-context-${config.info.name + '-Kary-UserContextMenu--vwarn'},
+		#user-context-${config.info.name + '-Kary-UserContextMenu--vmute-2d'},
+		#user-context-${config.info.name + '-Kary-UserContextMenu--vmute-4d'},
+		#user-context-${config.info.name + '-Kary-UserContextMenu--vmute-8d'}
 		{
 			color: #E09040;
 		}
-		#user-context-${config.info.name + '-UserContextMenu--vmute-3d'}.da-focused,
-		#user-context-${config.info.name + '-UserContextMenu--vmute-7d'}.da-focused,
-		#user-context-${config.info.name + '-UserContextMenu--vmute-14d'}.da-focused
+		#user-context-${config.info.name + '-Kary-UserContextMenu--vwarn'}.da-focused,
+		#user-context-${config.info.name + '-Kary-UserContextMenu--vmute-2d'}.da-focused,
+		#user-context-${config.info.name + '-Kary-UserContextMenu--vmute-4d'}.da-focused,
+		#user-context-${config.info.name + '-Kary-UserContextMenu--vmute-8d'}.da-focused
 		{
 			background: #E0904040;
 		}
 
-		#user-context-${config.info.name + '-UserContextMenu--perm-ban'},
-		#user-context-${config.info.name + '-UserContextMenu--ban-3d'},
-		#user-context-${config.info.name + '-UserContextMenu--ban-7d'},
-		#user-context-${config.info.name + '-UserContextMenu--ban-14d'}
+		#user-context-${config.info.name + '-Kary-UserContextMenu--perm-sban'},
+		#user-context-${config.info.name + '-Kary-UserContextMenu--sban-2d'},
+		#user-context-${config.info.name + '-Kary-UserContextMenu--sban-4d'},
+		#user-context-${config.info.name + '-Kary-UserContextMenu--sban-8d'}
 		{
 			color: #E04040;
 		}
-		#user-context-${config.info.name + '-UserContextMenu--perm-ban'}.da-focused,
-		#user-context-${config.info.name + '-UserContextMenu--ban-3d'}.da-focused,
-		#user-context-${config.info.name + '-UserContextMenu--ban-7d'}.da-focused,
-		#user-context-${config.info.name + '-UserContextMenu--ban-14d'}.da-focused
+		#user-context-${config.info.name + '-Kary-UserContextMenu--perm-sban'}.da-focused,
+		#user-context-${config.info.name + '-Kary-UserContextMenu--sban-2d'}.da-focused,
+		#user-context-${config.info.name + '-Kary-UserContextMenu--sban-4d'}.da-focused,
+		#user-context-${config.info.name + '-Kary-UserContextMenu--sban-8d'}.da-focused
 		{
 			color: #E0E0E0;
 			background: #E04040;
+		}
+
+		#user-context-${config.info.name + '-Kary-UserContextMenu--perm-ban'},
+		#user-context-${config.info.name + '-Kary-UserContextMenu--ban-2d'},
+		#user-context-${config.info.name + '-Kary-UserContextMenu--ban-4d'},
+		#user-context-${config.info.name + '-Kary-UserContextMenu--ban-8d'}
+		{
+			color: #E04040;
+		}
+		#user-context-${config.info.name + '-Kary-UserContextMenu--perm-ban'}.da-focused,
+		#user-context-${config.info.name + '-Kary-UserContextMenu--ban-2d'}.da-focused,
+		#user-context-${config.info.name + '-Kary-UserContextMenu--ban-4d'}.da-focused,
+		#user-context-${config.info.name + '-Kary-UserContextMenu--ban-8d'}.da-focused
+		{
+			color: #E0E0E0;
+			background: #E04040;
+		}
+
+		#user-context-${config.info.name + '-Kary-UserContextMenu--paula'}
+		{
+			color: #E090E0;
+		}
+		#user-context-${config.info.name + '-Kary-UserContextMenu--paula'}.da-focused
+		{
+			color: #E090E0;
+			background: #E090E040;
+		}
+
+		#user-context-${config.info.name + '-Menu-UserContextMenu'}
+		{
+			color: #40E040;
+		}
+		#user-context-${config.info.name + '-Menu-UserContextMenu'}.da-focused
+		{
+			color: #40E040;
+			background: #40E04040;
+		}
+
+		#user-context-${config.info.name + '-Menu-UserContextMenu--sup'}
+		{
+			color: #E0E040;
+		}
+		#user-context-${config.info.name + '-Menu-UserContextMenu--sup'}.da-focused
+		{
+			color: #E0E040;
+			background: #E0E04040;
+		}
+
+		#user-context-${config.info.name + '-Menu-UserContextMenu--move'}
+		{
+			color: #40E040;
+		}
+		#user-context-${config.info.name + '-Menu-UserContextMenu--move'}.da-focused
+		{
+			color: #40E040;
+			background: #40E04040;
+		}
+
+		#user-context-${config.info.name + '-Menu-UserContextMenu--stat'}
+		{
+			color: #4090E0;
+		}
+		#user-context-${config.info.name + '-Menu-UserContextMenu--stat'}.da-focused
+		{
+			color: #4090E0;
+			background: #4090E040;
 		}
 	`;
 
@@ -239,15 +305,8 @@ module.exports = (() =>
 	// ------------------------------------------------------------------------------------------------------------
 
 	let GBDFDB = null;
-
-	let user_warnings = {};
-	let dyno_busy = false;
-
 	let main_timer = null;
-	let dyno_timer = null;
-
 	let main_queue = new queue;
-	let dyno_queue = new queue;
 
 	// ------------------------------------------------------------------------------------------------------------
 	// ------------------------------------ Main Loop -------------------------------------------------------------
@@ -289,27 +348,6 @@ module.exports = (() =>
 	}
 
 	// ------------------------------------------------------------------------------------------------------------
-	// ------------------------------------ Dyno Loop -------------------------------------------------------------
-	// ------------------------------------------------------------------------------------------------------------
-
-	let dyno_loop = function()
-	{
-		let delay = config.time.tick_interval.min + (Math.max(0, config.time.tick_interval.max - config.time.tick_interval.min) * Math.random());
-
-		if (dyno_queue.length > 0 && !dyno_busy)
-		{
-			let task = dyno_queue.shift();
-			if (task.action == 'execute_dyno_command')
-			{
-				actions.execute_dyno_command(task.command);
-				delay += config.time.sending_command_timeout.min + (Math.max(0, config.time.sending_command_timeout.max - config.time.sending_command_timeout.min) * Math.random());
-			}
-		}
-
-		dyno_timer = setTimeout(dyno_loop, delay);
-	}
-
-	// ------------------------------------------------------------------------------------------------------------
 	// ------------------------------------ Discord Actions -------------------------------------------------------
 	// ------------------------------------------------------------------------------------------------------------
 
@@ -341,20 +379,6 @@ module.exports = (() =>
 		actions.send_message(channels.komendy, command);
 	}
 
-	actions.execute_dyno_command = function(command)
-	{
-		// log(`action.execute_dyno_command('${command}');`);
-		actions.send_message(channels.komendy, command);
-
-		if (dyno_busy)
-			clearTimeout(dyno_timer);
-
-		dyno_busy = new Date().getTime();
-		dyno_timer = setTimeout(function(){
-			dyno_busy = false;
-		}, config.time.waiting_for_dyno_timeout);
-	}
-
 	actions.add_reaction = function(channel_id, message_id, reaction)
 	{
 		log(`action.add_reaction('${channel_id}', '${message_id}', {id: '${reaction.id}', name: '${reaction.name}'});`);
@@ -371,10 +395,7 @@ module.exports = (() =>
 		if (!task || !task.action)
 			return;
 
-		if (task.action == 'execute_dyno_command')
-			dyno_queue.push(task);
-		else
-			main_queue.push(task);
+		main_queue.push(task);
 	}
 
 	tasks.send_message = function(channel_id, message)
@@ -392,28 +413,38 @@ module.exports = (() =>
 		tasks.queue({action: 'execute_command', command: command});
 	}
 
-	tasks.execute_dyno_command = function(command)
+	tasks.twarn = function(user_id, reason)
 	{
-		tasks.queue({action: 'execute_dyno_command', command: command});
+		tasks.execute_command(`/twarn ${user_id} ${reason}`);
+		tasks.execute_command(`/twarns ${user_id}`);
 	}
 
-	tasks.warn = function(user_id, reason)
+	tasks.vwarn = function(user_id, reason)
 	{
-		tasks.execute_dyno_command(`!warn ${user_id} ${reason}`);
-		tasks.execute_dyno_command(`!warnings ${user_id}`);
-
-		user_warnings[user_id] = true;
+		tasks.execute_command(`/vwarn ${user_id} ${reason}`);
+		tasks.execute_command(`/vwarns ${user_id}`);
 	}
 
 	tasks.note = function(user_id, reason)
 	{
-		tasks.execute_dyno_command(`!note ${user_id} ${reason}`);
+		tasks.execute_command(`/note ${user_id} ${reason}`);
+	}
+
+	tasks.perm_sban = function(user_id, reason)
+	{
+		if (GBDFDB.UserUtils.can('BAN_MEMBERS'))
+			tasks.execute_command(`/sban ${user_id} ${reason}`);
+		else
+		{
+			tasks.report_to_perm_sban(user_id, reason);
+			tasks.perm_mute(user_id);
+		}
 	}
 
 	tasks.perm_ban = function(user_id, reason)
 	{
 		if (GBDFDB.UserUtils.can('BAN_MEMBERS'))
-			tasks.execute_dyno_command(`!ban ${user_id} ${reason}`);
+			tasks.execute_command(`/ban ${user_id} ${reason}`);
 		else
 		{
 			tasks.report_to_perm_ban(user_id, reason);
@@ -424,9 +455,9 @@ module.exports = (() =>
 	tasks.perm_mute = function(user_id)
 	{
 		if (GBDFDB.UserUtils.can('MUTE_MEMBERS'))
-			tasks.execute_command(`!vmute ${user_id} 30d ${reason}`);
+			tasks.execute_command(`/vmute ${user_id} 1d Prewencja przed zgłoszeniem do bana. Powód bana: ${reason}`);
 		else
-			tasks.execute_command(`!tmute ${user_id} 30d ${reason}`);
+			tasks.execute_command(`/tmute ${user_id} 1d Prewencja przed zgłoszeniem do bana. Powód bana: ${reason}`);
 	}
 
 	tasks.report_to_perm_ban = function(user_id, reason)
@@ -434,15 +465,36 @@ module.exports = (() =>
 		tasks.send_message(channels.zgłoszenia, `${user_id} ${reason}`);
 	}
 
-	tasks.temp_ban = function(user_id, days, reason)
+	tasks.report_to_perm_sban = function(user_id, reason)
+	{
+		tasks.send_message(channels.zgłoszenia, `sban ${user_id} ${reason}`);
+	}
+
+	tasks.temp_sban = function(user_id, days, reason)
 	{
 		if (GBDFDB.UserUtils.can('BAN_MEMBERS'))
-			tasks.execute_dyno_command(`!ban ${user_id} ${days}d ${reason}`);
+			tasks.execute_command(`/sban ${user_id} ${days}d ${reason}`);
 		else
 		{
 			tasks.report_to_temp_ban(user_id, days, reason);
 			tasks.temp_mute(user_id, days, reason);
 		}
+	}
+
+	tasks.temp_ban = function(user_id, days, reason)
+	{
+		if (GBDFDB.UserUtils.can('BAN_MEMBERS'))
+			tasks.execute_command(`/ban ${user_id} ${days}d ${reason}`);
+		else
+		{
+			tasks.report_to_temp_ban(user_id, days, reason);
+			tasks.temp_mute(user_id, days, reason);
+		}
+	}
+
+	tasks.report_to_temp_sban = function(user_id, days, reason)
+	{
+		tasks.send_message(channels.zgłoszenia, `sban ${user_id} ${days}d ${reason}`);
 	}
 
 	tasks.report_to_temp_ban = function(user_id, days, reason)
@@ -453,15 +505,15 @@ module.exports = (() =>
 	tasks.temp_mute = function(user_id, days, reason)
 	{
 		if (GBDFDB.UserUtils.can('MUTE_MEMBERS'))
-			tasks.execute_command(`!vmute ${user_id} ${days}d ${reason}`);
+			tasks.execute_command(`/vmute ${user_id} ${days}d ${reason}`);
 		else
-			tasks.execute_command(`!tmute ${user_id} ${days}d ${reason}`);
+			tasks.execute_command(`/tmute ${user_id} ${days}d ${reason}`);
 	}
 
 	tasks.vmute = function(user_id, days, reason)
 	{
 		if (GBDFDB.UserUtils.can('MUTE_MEMBERS'))
-			tasks.execute_dyno_command(`!vmute ${user_id} ${days}d ${reason}`);
+			tasks.execute_command(`/vmute ${user_id} ${days}d ${reason}`);
 		else
 		{
 			tasks.report_to_vmute(user_id, days, reason);
@@ -605,8 +657,6 @@ module.exports = (() =>
 				log('onStart();');
 
 				main_timer = setTimeout(main_loop, config.time.starting_delay);
-				dyno_timer = setTimeout(dyno_loop, config.time.starting_delay);
-
 				BdApi.injectCSS(config.info.name, css);
 			}
 
@@ -619,14 +669,8 @@ module.exports = (() =>
 				}
 		
 				this.unpatches = [];
-				user_warnings = {};
-				dyno_busy = false;
-
 				main_queue = new queue;
-				dyno_queue = new queue;
-
 				clearTimeout(main_timer);
-				clearTimeout(dyno_timer);
 
 				BdApi.clearCSS(config.info.name, css);
 			}
@@ -703,7 +747,7 @@ module.exports = (() =>
 							onClick: _ =>
 							{
 								tasks.delete_message(channel.id, message.id);
-								tasks.warn(author.id, `Niestosowanie się do wzoru na kanale <#${channel.id}>.`);
+								tasks.twarn(author.id, `Niestosowanie się do wzoru na kanale <#${channel.id}>.`);
 							},
 							children: BDFDB.ReactUtils.createElement(BDFDB.LibraryComponents.SvgIcon,
 							{
@@ -736,7 +780,7 @@ module.exports = (() =>
 							onClick: _ =>
 							{
 								tasks.delete_message(channel.id, message.id);
-								tasks.warn(author.id, `Wiadomość niezwiązana z szukaniem drużyny na kanale <#${channel.id}>.`);
+								tasks.twarn(author.id, `Wiadomość niezwiązana z szukaniem drużyny na kanale <#${channel.id}>.`);
 							},
 							children: BDFDB.ReactUtils.createElement(BDFDB.LibraryComponents.SvgIcon,
 							{
@@ -773,7 +817,7 @@ module.exports = (() =>
 							onClick: _ =>
 							{
 								tasks.delete_message(channel.id, message.id);
-								tasks.warn(author.id, `Szukanie drużyny na kanale <#${channel.id}>.`);
+								tasks.twarn(author.id, `Szukanie drużyny na kanale <#${channel.id}>.`);
 							},
 							children: BDFDB.ReactUtils.createElement(BDFDB.LibraryComponents.SvgIcon,
 							{
@@ -809,7 +853,7 @@ module.exports = (() =>
 							onClick: _ =>
 							{
 								tasks.delete_message(channel.id, message.id);
-								tasks.warn(author.id, `Spam na kanale <#${channel.id}>.`);
+								tasks.twarn(author.id, `Spam na kanale <#${channel.id}>.`);
 							},
 							children: BDFDB.ReactUtils.createElement(BDFDB.LibraryComponents.SvgIcon,
 							{
@@ -848,7 +892,7 @@ module.exports = (() =>
 							onClick: _ =>
 							{
 								tasks.delete_message(channel.id, message.id);
-								tasks.warn(author.id, `Wysyłanie linków w miejscu do tego nieprzeznaczonym, tj. na kanale <#${channel.id}>.`);
+								tasks.twarn(author.id, `Wysyłanie linków w miejscu do tego nieprzeznaczonym, tj. na kanale <#${channel.id}>.`);
 							},
 							children: BDFDB.ReactUtils.createElement(BDFDB.LibraryComponents.SvgIcon,
 							{
@@ -887,7 +931,7 @@ module.exports = (() =>
 							onClick: _ =>
 							{
 								tasks.delete_message(channel.id, message.id);
-								tasks.warn(author.id, `${reason} na kanale <#${channel.id}>.`);
+								tasks.twarn(author.id, `${reason} na kanale <#${channel.id}>.`);
 							},
 							children: BDFDB.ReactUtils.createElement(BDFDB.LibraryComponents.SvgIcon,
 							{
@@ -941,7 +985,7 @@ module.exports = (() =>
 							onClick: _ =>
 							{
 								tasks.delete_message(channel.id, message.id);
-								tasks.warn(author.id, `${reason} na kanale <#${channel.id}>.`);
+								tasks.twarn(author.id, `${reason} na kanale <#${channel.id}>.`);
 							},
 							children: BDFDB.ReactUtils.createElement(BDFDB.LibraryComponents.SvgIcon,
 							{
@@ -974,7 +1018,7 @@ module.exports = (() =>
 							onClick: _ =>
 							{
 								tasks.delete_message(channel.id, message.id);
-								tasks.warn(author.id, `Niepoprawne użycie kanału <#${channel.id}>.`);
+								tasks.twarn(author.id, `Niepoprawne użycie kanału <#${channel.id}>.`);
 							},
 							children: BDFDB.ReactUtils.createElement(BDFDB.LibraryComponents.SvgIcon,
 							{
@@ -1036,6 +1080,7 @@ module.exports = (() =>
 					&&	!has_emoji(message.reactions, emojis.thumb_down.name)
 					&&	message.content
 					&&	!message.content.startsWith('vmute ')
+					&&	!message.content.startsWith('sban ')
 				)
 				{
 					children.unshift(BDFDB.ReactUtils.createElement(BDFDB.LibraryComponents.TooltipContainer,
@@ -1049,12 +1094,47 @@ module.exports = (() =>
 							onClick: _ =>
 							{
 								tasks.add_reaction(channel.id, message.id, emojis.thumb_up);
-								tasks.execute_dyno_command(`!ban ${message.content}`);
+								tasks.execute_command(`/ban ${message.content}`);
 							},
 							children: BDFDB.ReactUtils.createElement(BDFDB.LibraryComponents.SvgIcon,
 							{
 								className: BDFDB.disCN.messagetoolbaricon,
 								iconSVG: images.banhammer
+							})
+						})
+					}));
+				}
+
+				// Zgłoszenia: Ban (miękki)
+				if
+				(		!expanded
+					&&	author.id != BDFDB.UserUtils.me.id
+					&&	BDFDB.UserUtils.can('BAN_MEMBERS')
+					&&	channel.id == channels.zgłoszenia
+					&&	'reactions' in message
+					&&	!has_emoji(message.reactions, emojis.thumb_up.name)
+					&&	!has_emoji(message.reactions, emojis.thumb_down.name)
+					&&	message.content
+					&&	message.content.startsWith('sban ')
+				)
+				{
+					children.unshift(BDFDB.ReactUtils.createElement(BDFDB.LibraryComponents.TooltipContainer,
+					{
+						key: 'mention',
+						text: 'Ban (miękki)',
+						className: config.info.name + '-MessageOptionToolbar-button',
+						children: BDFDB.ReactUtils.createElement(BDFDB.LibraryComponents.Clickable,
+						{
+							className: BDFDB.disCN.messagetoolbarbutton,
+							onClick: _ =>
+							{
+								tasks.add_reaction(channel.id, message.id, emojis.thumb_up);
+								tasks.execute_command(`/${message.content}`);
+							},
+							children: BDFDB.ReactUtils.createElement(BDFDB.LibraryComponents.SvgIcon,
+							{
+								className: BDFDB.disCN.messagetoolbaricon,
+								iconSVG: images.mute
 							})
 						})
 					}));
@@ -1087,7 +1167,7 @@ module.exports = (() =>
 							onClick: _ =>
 							{
 								tasks.add_reaction(channel.id, message.id, emojis.thumb_up);
-								tasks.execute_dyno_command(`!${message.content}`);
+								tasks.execute_command(`/${message.content}`);
 							},
 							children: BDFDB.ReactUtils.createElement(BDFDB.LibraryComponents.SvgIcon,
 							{
@@ -1183,162 +1263,6 @@ module.exports = (() =>
 				}
 			}
 
-			getMessages(e)
-			{
-				if
-				(		e !== Object(e)
-					||	! 'returnValue' in e
-					||	e.returnValue !== Object(e.returnValue)
-					||	! '_array' in e.returnValue
-					||	! Array.isArray(e.returnValue._array)
-					||	! e.returnValue._array.length
-				)
-					return;
-
-				let messages = e.returnValue._array;
-				for (var i = 0; i < messages.length; ++i)
-				{
-					let message = messages[i];
-				}
-			}
-
-			processMessage(e)
-			{
-				if
-				(		e !== Object(e)
-					||	! 'instance' in e
-					||	e.instance !== Object(e.instance)
-					||	! 'props' in e.instance
-					||	e.instance.props !== Object(e.instance.props)
-					||	! 'childrenMessageContent' in e.instance.props
-					||	e.instance.props.childrenMessageContent !== Object(e.instance.props.childrenMessageContent)
-					||	! 'props' in e.instance.props.childrenMessageContent
-					||	e.instance.props.childrenMessageContent.props !== Object(e.instance.props.childrenMessageContent.props)
-					||	! 'message' in e.instance.props.childrenMessageContent.props
-					||	e.instance.props.childrenMessageContent.props.message !== Object(e.instance.props.childrenMessageContent.props.message)
-				)
-					return;
-	
-				let message = e.instance.props.childrenMessageContent.props.message;
-				this.parse_message(message);
-			}
-
-			parse_message(message)
-			{
-				if
-				(		! 'channel_id' in message
-					||	! 'author' in message
-					||	message.author !== Object(message.author)
-					||	! 'bot' in message.author
-					||	! 'username' in message.author
-				)
-					return;
-
-				if
-				(		message.channel_id == channels.komendy
-					&&	message.author.bot
-					&&	message.author.username == 'Dyno'
-				)
-					this.parse_dyno_message(message);
-			}
-
-			parse_dyno_message(message)
-			{
-				dyno_busy = false;
-
-				let data = this.get_warnings(message);
-				if (data.success)
-				{
-					log(`get_warnings: {user_id: '${data.user_id}', warns: {prev: ${data.warns.prev}, new: ${data.warns.new}, sum: ${data.warns.sum}}}`, ', user_warnings:', user_warnings);
-				}
-
-				if
-				(		data.success
-					&&	user_warnings[data.user_id]
-				)
-				{
-					delete user_warnings[data.user_id];
-
-					if (data.warns.new < 3)
-						return;
-
-					let reason;
-					if (data.warns.prev == 0)
-						if (data.warns.new == 3)
-							reason = 'Osiągnięto limit ostrzeżeń (3).';
-						else
-							reason = `Przekroczono limit ostrzeżeń (${data.warns.sum}/3).`;
-					else
-						if (data.warns.new == 3)
-							reason = `Osiągnięto limit nowych ostrzeżeń (${data.warns.new}) otrzymanych od ostatniej kary (nałożonej przy liczbie ostrzeżeń: ${data.warns.prev}).`;
-						else
-							reason = `Przekroczono limit nowych ostrzeżeń (${data.warns.new}/3) otrzymanych od ostatniej kary (nałożonej przy liczbie ostrzeżeń: ${data.warns.prev}).`;
-
-					tasks.execute_dyno_command(`!tmute ${data.user_id} ${data.warns.new}d ${reason}`);
-					tasks.execute_dyno_command(`!clearwarn ${data.user_id}`);
-					tasks.execute_dyno_command(`!warn ${data.user_id} Usunięte ostrzeżenia: ${data.warns.sum}.`);
-				}
-			}
-
-			get_warnings(message)
-			{
-				if
-				(		! 'embeds' in message
-					||	! Array.isArray(message.embeds)
-					||	! message.embeds.length
-				)
-					return {success: false};
-
-				let embed = message.embeds[0];
-
-				if
-				(		! 'author' in embed
-					||	  embed.author !== Object(embed.author)
-					||	! 'name' in embed.author
-					||	  embed.author.name !== String(embed.author.name)
-				)
-					return {success: false};
-
-				let _ = embed.author.name.match(/(\d+) Warnings? for .* \((\d+)\)/);
-
-				if (!_)
-					return {success: false};
-
-				let number_of_warns = 0| _[1];
-				let number_of_new_warns = number_of_warns;
-				let number_of_prev_warns = 0;
-
-				let warned_user_id = _[2];
-
-				if
-				(		'fields' in embed
-					&&	Array.isArray(embed.fields)
-					&&	embed.fields.length
-					&&	'rawValue' in embed.fields[0]
-					&&	embed.fields[0].rawValue === String(embed.fields[0].rawValue)
-				){
-					let warn_reason = embed.fields[0].rawValue.split(' - ');
-					if (		
-							Array.isArray(warn_reason)
-						&&	(		
-									warn_reason[0].toLowerCase().includes('warn')
-								||	warn_reason[0].toLowerCase().includes('ostrze')
-							)
-					){
-						let _ = warn_reason[0].match(/(\d+)/);
-						if (_)
-						{
-							number_of_prev_warns = 0| _[1];
-							if (number_of_prev_warns > 0 && number_of_prev_warns < 100)
-								number_of_warns += number_of_prev_warns - 1;
-								number_of_new_warns = number_of_warns - number_of_prev_warns;
-						}
-					}
-				}
-
-				return {success: true, warns: {sum: number_of_warns, prev: number_of_prev_warns, new: number_of_new_warns}, user_id: warned_user_id};
-			}
-
 			onChannelContextMenu(e)
 			{
 				
@@ -1370,565 +1294,844 @@ module.exports = (() =>
 
 				let user = menu.user;
 
-				if (BDFDB.UserUtils.can('MANAGE_MESSAGES', user.id))
-					return;
-
 				let [children, index] = BDFDB.ContextMenuUtils.findItem(e.returnvalue, {id: 'devmode-copy-id', group: true});
-				children.splice(index > -1 ? index : children.length, 0, BDFDB.ContextMenuUtils.createItem(BDFDB.LibraryComponents.MenuItems.MenuGroup, {
-					children: [
+				let contextMenuItems = [];
+				let menuEntries = [];
+
+				if (user.id != BDFDB.UserUtils.me.id) {
+					menuEntries.push(BDFDB.ContextMenuUtils.createItem(BDFDB.LibraryComponents.MenuItems.MenuItem, {
+						label: 'Przenieś do mnie',
+						id: 'move',
+						action: _ => {
+							tasks.execute_command(`/move ${user.id}`);
+						}
+					}));
+				}
+				if (BDFDB.UserUtils.can('ADMINISTRATOR'))
+					menuEntries.push(
 						BDFDB.ContextMenuUtils.createItem(BDFDB.LibraryComponents.MenuItems.MenuItem, {
-							label: 'Reverse┋Kary',
-							id: config.info.name + '-UserContextMenu',
-							children: BDFDB.ContextMenuUtils.createItem(BDFDB.LibraryComponents.MenuItems.MenuGroup, {
-								children: [
-									BDFDB.ContextMenuUtils.createItem(BDFDB.LibraryComponents.MenuItems.MenuItem, {
-										label: 'Notatka',
-										id: 'note',
-										action: _ => {
-											BdApi.showConfirmationModal(
-												`Notatka`, action_popup__get_user_header(user.id, user.tag).concat([
-													BDFDB.ReactUtils.createElement(BDFDB.LibraryComponents.TextInput, {
-														autoFocus: true,
-														errorMessage: 'Musisz podać treść notatki.',
-														value: '',
-														placeholder: 'Treść notatki',
-														size: BDFDB.LibraryComponents.TextInput.Sizes.DEFAULT,
-														maxLength: 1024,
-														id: config.info.name + '-note-text',
-														success: false,
-														onChange: (value, instance) => {
-															if (value.length) {
-																instance.props.errorMessage = null;
-																instance.props.success = true;
-															} else {
-																instance.props.errorMessage = 'Musisz podać treść notatki.';
-																instance.props.success = false;
-															}
-														},
-													}),
-												]), {
-													danger: true,
-													confirmText: 'Note',
-													cancelText: 'Anuluj',
-													onConfirm: function() {
-														let reason = document.getElementById(config.info.name + '-note-text').value;
-														if (!reason)
-														{
-															BdApi.showToast('Notatka niezapisana: Brak treści.', {type: 'error'});
-															return;
-														}
-
-														tasks.note(user.id, reason);
-													},
-												}
-											);
-
-											setTimeout(function(){document.getElementById(config.info.name + '-note-text').focus();}, 0);
-										}
-									}),
-									BDFDB.ContextMenuUtils.createItem(BDFDB.LibraryComponents.FormComponents.FormDivider, {id: 'separator-between-note-and-warn'}),
-									BDFDB.ContextMenuUtils.createItem(BDFDB.LibraryComponents.MenuItems.MenuItem, {
-										label: 'Ostrzeżenie',
-										id: 'warn',
-										action: _ => {
-											BdApi.showConfirmationModal(
-												`Ostrzeżenie`, action_popup__get_user_header(user.id, user.tag).concat([
-													BDFDB.ReactUtils.createElement(BDFDB.LibraryComponents.TextInput, {
-														autoFocus: true,
-														errorMessage: 'Musisz podać powód ostrzeżenia.',
-														value: '',
-														placeholder: 'Powód ostrzeżenia',
-														size: BDFDB.LibraryComponents.TextInput.Sizes.DEFAULT,
-														maxLength: 1024,
-														id: config.info.name + '-warn-reason',
-														success: false,
-														onChange: (value, instance) => {
-															if (value.length) {
-																instance.props.errorMessage = null;
-																instance.props.success = true;
-															} else {
-																instance.props.errorMessage = 'Musisz podać powód ostrzeżenia.';
-																instance.props.success = false;
-															}
-														},
-													}),
-												]), {
-													danger: true,
-													confirmText: 'Warn',
-													cancelText: 'Anuluj',
-													onConfirm: function() {
-														let reason = document.getElementById(config.info.name + '-warn-reason').value;
-														if (!reason)
-														{
-															BdApi.showToast('Warn nieudany: Brak powodu.', {type: 'error'});
-															return;
-														}
-
-														tasks.warn(user.id, reason);
-													},
-												}
-											);
-
-											setTimeout(function(){document.getElementById(config.info.name + '-warn-reason').focus();}, 0);
-										}
-									}),
-									BDFDB.ContextMenuUtils.createItem(BDFDB.LibraryComponents.MenuItems.MenuItem, {
-										label: 'Mute (tekstowy) na 3 dni',
-										id: 'tmute-3d',
-										action: _ => {
-											BdApi.showConfirmationModal(
-												`Mute (tekstowy) — 3 dni`, action_popup__get_user_header(user.id, user.tag).concat([
-													BDFDB.ReactUtils.createElement(BDFDB.LibraryComponents.TextInput, {
-														autoFocus: true,
-														errorMessage: 'Musisz podać powód muta.',
-														value: '',
-														placeholder: 'Powód muta',
-														size: BDFDB.LibraryComponents.TextInput.Sizes.DEFAULT,
-														maxLength: 1024,
-														id: config.info.name + '-tmute-3d-reason',
-														success: false,
-														onChange: (value, instance) => {
-															if (value.length) {
-																instance.props.errorMessage = null;
-																instance.props.success = true;
-															} else {
-																instance.props.errorMessage = 'Musisz podać powód muta.';
-																instance.props.success = false;
-															}
-														},
-													}),
-												]), {
-													danger: true,
-													confirmText: 'Mute',
-													cancelText: 'Anuluj',
-													onConfirm: function() {
-														let reason = document.getElementById(config.info.name + '-tmute-3d-reason').value;
-														if (!reason)
-														{
-															BdApi.showToast('Mute nieudany: Brak powodu.', {type: 'error'});
-															return;
-														}
-
-														tasks.execute_dyno_command(`!tmute ${user.id} 3d ${reason}`);
-													},
-												}
-											);
-
-											setTimeout(function(){document.getElementById(config.info.name + '-tmute-3d-reason').focus();}, 0);
-										}
-									}),
-									BDFDB.ContextMenuUtils.createItem(BDFDB.LibraryComponents.MenuItems.MenuItem, {
-										label: 'Mute (tekstowy) na 7 dni',
-										id: 'tmute-7d',
-										action: _ => {
-											BdApi.showConfirmationModal(
-												`Mute (tekstowy) — 7 dni`, action_popup__get_user_header(user.id, user.tag).concat([
-													BDFDB.ReactUtils.createElement(BDFDB.LibraryComponents.TextInput, {
-														autoFocus: true,
-														errorMessage: 'Musisz podać powód muta.',
-														value: '',
-														placeholder: 'Powód muta',
-														size: BDFDB.LibraryComponents.TextInput.Sizes.DEFAULT,
-														maxLength: 1024,
-														id: config.info.name + '-tmute-7d-reason',
-														success: false,
-														onChange: (value, instance) => {
-															if (value.length) {
-																instance.props.errorMessage = null;
-																instance.props.success = true;
-															} else {
-																instance.props.errorMessage = 'Musisz podać powód muta.';
-																instance.props.success = false;
-															}
-														},
-													}),
-												]), {
-													danger: true,
-													confirmText: 'Mute',
-													cancelText: 'Anuluj',
-													onConfirm: function() {
-														let reason = document.getElementById(config.info.name + '-tmute-7d-reason').value;
-														if (!reason)
-														{
-															BdApi.showToast('Mute nieudany: Brak powodu.', {type: 'error'});
-															return;
-														}
-
-														tasks.execute_dyno_command(`!tmute ${user.id} 7d ${reason}`);
-													},
-												}
-											);
-
-											setTimeout(function(){document.getElementById(config.info.name + '-tmute-7d-reason').focus();}, 0);
-										}
-									}),
-									BDFDB.ContextMenuUtils.createItem(BDFDB.LibraryComponents.MenuItems.MenuItem, {
-										label: 'Mute (tekstowy) na 14 dni',
-										id: 'tmute-14d',
-										action: _ => {
-											BdApi.showConfirmationModal(
-												`Mute (tekstowy) — 14 dni`, action_popup__get_user_header(user.id, user.tag).concat([
-													BDFDB.ReactUtils.createElement(BDFDB.LibraryComponents.TextInput, {
-														autoFocus: true,
-														errorMessage: 'Musisz podać powód muta.',
-														value: '',
-														placeholder: 'Powód muta',
-														size: BDFDB.LibraryComponents.TextInput.Sizes.DEFAULT,
-														maxLength: 1024,
-														id: config.info.name + '-tmute-14d-reason',
-														success: false,
-														onChange: (value, instance) => {
-															if (value.length) {
-																instance.props.errorMessage = null;
-																instance.props.success = true;
-															} else {
-																instance.props.errorMessage = 'Musisz podać powód muta.';
-																instance.props.success = false;
-															}
-														},
-													}),
-												]), {
-													danger: true,
-													confirmText: 'Mute',
-													cancelText: 'Anuluj',
-													onConfirm: function() {
-														let reason = document.getElementById(config.info.name + '-tmute-14d-reason').value;
-														if (!reason)
-														{
-															BdApi.showToast('Mute nieudany: Brak powodu.', {type: 'error'});
-															return;
-														}
-
-														tasks.execute_dyno_command(`!tmute ${user.id} 14d ${reason}`);
-													},
-												}
-											);
-
-											setTimeout(function(){document.getElementById(config.info.name + '-tmute-14d-reason').focus();}, 0);
-										}
-									}),
-									BDFDB.ContextMenuUtils.createItem(BDFDB.LibraryComponents.FormComponents.FormDivider, {id: 'separator-between-tmute-and-vmute'}),
-									BDFDB.ContextMenuUtils.createItem(BDFDB.LibraryComponents.MenuItems.MenuItem, {
-										label: 'Mute (głosowy) na 3 dni',
-										id: 'vmute-3d',
-										action: _ => {
-											BdApi.showConfirmationModal(
-												`Mute (głosowy) — 3 dni`, action_popup__get_user_header(user.id, user.tag).concat([
-													BDFDB.ReactUtils.createElement(BDFDB.LibraryComponents.TextInput, {
-														autoFocus: true,
-														errorMessage: 'Musisz podać powód muta.',
-														value: '',
-														placeholder: 'Powód muta',
-														size: BDFDB.LibraryComponents.TextInput.Sizes.DEFAULT,
-														maxLength: 1024,
-														id: config.info.name + '-vmute-3d-reason',
-														success: false,
-														onChange: (value, instance) => {
-															if (value.length) {
-																instance.props.errorMessage = null;
-																instance.props.success = true;
-															} else {
-																instance.props.errorMessage = 'Musisz podać powód muta.';
-																instance.props.success = false;
-															}
-														},
-													}),
-												]), {
-													danger: true,
-													confirmText: 'Mute',
-													cancelText: 'Anuluj',
-													onConfirm: function() {
-														let reason = document.getElementById(config.info.name + '-vmute-3d-reason').value;
-														if (!reason)
-														{
-															BdApi.showToast('Mute nieudany: Brak powodu.', {type: 'error'});
-															return;
-														}
-
-														tasks.vmute(user.id, 3, reason);
-													},
-												}
-											);
-
-											setTimeout(function(){document.getElementById(config.info.name + '-vmute-3d-reason').focus();}, 0);
-										}
-									}),
-									BDFDB.ContextMenuUtils.createItem(BDFDB.LibraryComponents.MenuItems.MenuItem, {
-										label: 'Mute (głosowy) na 7 dni',
-										id: 'vmute-7d',
-										action: _ => {
-											BdApi.showConfirmationModal(
-												`Mute (głosowy) — 7 dni`, action_popup__get_user_header(user.id, user.tag).concat([
-													BDFDB.ReactUtils.createElement(BDFDB.LibraryComponents.TextInput, {
-														autoFocus: true,
-														errorMessage: 'Musisz podać powód muta.',
-														value: '',
-														placeholder: 'Powód muta',
-														size: BDFDB.LibraryComponents.TextInput.Sizes.DEFAULT,
-														maxLength: 1024,
-														id: config.info.name + '-vmute-7d-reason',
-														success: false,
-														onChange: (value, instance) => {
-															if (value.length) {
-																instance.props.errorMessage = null;
-																instance.props.success = true;
-															} else {
-																instance.props.errorMessage = 'Musisz podać powód muta.';
-																instance.props.success = false;
-															}
-														},
-													}),
-												]), {
-													danger: true,
-													confirmText: 'Mute',
-													cancelText: 'Anuluj',
-													onConfirm: function() {
-														let reason = document.getElementById(config.info.name + '-vmute-7d-reason').value;
-														if (!reason)
-														{
-															BdApi.showToast('Mute nieudany: Brak powodu.', {type: 'error'});
-															return;
-														}
-
-														tasks.vmute(user.id, 7, reason);
-													},
-												}
-											);
-
-											setTimeout(function(){document.getElementById(config.info.name + '-vmute-7d-reason').focus();}, 0);
-										}
-									}),
-									BDFDB.ContextMenuUtils.createItem(BDFDB.LibraryComponents.MenuItems.MenuItem, {
-										label: 'Mute (głosowy) na 14 dni',
-										id: 'vmute-14d',
-										action: _ => {
-											BdApi.showConfirmationModal(
-												`Mute (głosowy) — 14 dni`, action_popup__get_user_header(user.id, user.tag).concat([
-													BDFDB.ReactUtils.createElement(BDFDB.LibraryComponents.TextInput, {
-														autoFocus: true,
-														errorMessage: 'Musisz podać powód muta.',
-														value: '',
-														placeholder: 'Powód muta',
-														size: BDFDB.LibraryComponents.TextInput.Sizes.DEFAULT,
-														maxLength: 1024,
-														id: config.info.name + '-vmute-14d-reason',
-														success: false,
-														onChange: (value, instance) => {
-															if (value.length) {
-																instance.props.errorMessage = null;
-																instance.props.success = true;
-															} else {
-																instance.props.errorMessage = 'Musisz podać powód muta.';
-																instance.props.success = false;
-															}
-														},
-													}),
-												]), {
-													danger: true,
-													confirmText: 'Mute',
-													cancelText: 'Anuluj',
-													onConfirm: function() {
-														let reason = document.getElementById(config.info.name + '-vmute-14d-reason').value;
-														if (!reason)
-														{
-															BdApi.showToast('Mute nieudany: Brak powodu.', {type: 'error'});
-															return;
-														}
-
-														tasks.vmute(user.id, 14, reason);
-													},
-												}
-											);
-
-											setTimeout(function(){document.getElementById(config.info.name + '-vmute-14d-reason').focus();}, 0);
-										}
-									}),
-									BDFDB.ContextMenuUtils.createItem(BDFDB.LibraryComponents.FormComponents.FormDivider, {id: 'separator-between-vmute-and-ban'}),
-									BDFDB.ContextMenuUtils.createItem(BDFDB.LibraryComponents.MenuItems.MenuItem, {
-										label: 'Ban na 3 dni',
-										id: 'ban-3d',
-										action: _ => {
-											BdApi.showConfirmationModal(
-												`Ban — 3 dni`, action_popup__get_user_header(user.id, user.tag).concat([
-													BDFDB.ReactUtils.createElement(BDFDB.LibraryComponents.TextInput, {
-														autoFocus: true,
-														errorMessage: 'Musisz podać powód bana.',
-														value: '',
-														placeholder: 'Powód bana',
-														size: BDFDB.LibraryComponents.TextInput.Sizes.DEFAULT,
-														maxLength: 1024,
-														id: config.info.name + '-ban-3d-reason',
-														success: false,
-														onChange: (value, instance) => {
-															if (value.length) {
-																instance.props.errorMessage = null;
-																instance.props.success = true;
-															} else {
-																instance.props.errorMessage = 'Musisz podać powód bana.';
-																instance.props.success = false;
-															}
-														},
-													}),
-												]), {
-													danger: true,
-													confirmText: 'Ban',
-													cancelText: 'Anuluj',
-													onConfirm: function() {
-														let reason = document.getElementById(config.info.name + '-ban-3d-reason').value;
-														if (!reason)
-														{
-															BdApi.showToast('Ban nieudany: Brak powodu.', {type: 'error'});
-															return;
-														}
-
-														tasks.temp_ban(user.id, 3, reason);
-													},
-												}
-											);
-
-											setTimeout(function(){document.getElementById(config.info.name + '-ban-3d-reason').focus();}, 0);
-										}
-									}),
-									BDFDB.ContextMenuUtils.createItem(BDFDB.LibraryComponents.MenuItems.MenuItem, {
-										label: 'Ban na 7 dni',
-										id: 'ban-7d',
-										action: _ => {
-											BdApi.showConfirmationModal(
-												`Ban — 7 dni`, action_popup__get_user_header(user.id, user.tag).concat([
-													BDFDB.ReactUtils.createElement(BDFDB.LibraryComponents.TextInput, {
-														autoFocus: true,
-														errorMessage: 'Musisz podać powód bana.',
-														value: '',
-														placeholder: 'Powód bana',
-														size: BDFDB.LibraryComponents.TextInput.Sizes.DEFAULT,
-														maxLength: 1024,
-														id: config.info.name + '-ban-7d-reason',
-														success: false,
-														onChange: (value, instance) => {
-															if (value.length) {
-																instance.props.errorMessage = null;
-																instance.props.success = true;
-															} else {
-																instance.props.errorMessage = 'Musisz podać powód bana.';
-																instance.props.success = false;
-															}
-														},
-													}),
-												]), {
-													danger: true,
-													confirmText: 'Ban',
-													cancelText: 'Anuluj',
-													onConfirm: function() {
-														let reason = document.getElementById(config.info.name + '-ban-7d-reason').value;
-														if (!reason)
-														{
-															BdApi.showToast('Ban nieudany: Brak powodu.', {type: 'error'});
-															return;
-														}
-
-														tasks.temp_ban(user.id, 7, reason);
-													},
-												}
-											);
-
-											setTimeout(function(){document.getElementById(config.info.name + '-ban-7d-reason').focus();}, 0);
-										}
-									}),
-									BDFDB.ContextMenuUtils.createItem(BDFDB.LibraryComponents.MenuItems.MenuItem, {
-										label: 'Ban na 14 dni',
-										id: 'ban-14d',
-										action: _ => {
-											BdApi.showConfirmationModal(
-												`Ban — 14 dni`, action_popup__get_user_header(user.id, user.tag).concat([
-													BDFDB.ReactUtils.createElement(BDFDB.LibraryComponents.TextInput, {
-														autoFocus: true,
-														errorMessage: 'Musisz podać powód bana.',
-														value: '',
-														placeholder: 'Powód bana',
-														size: BDFDB.LibraryComponents.TextInput.Sizes.DEFAULT,
-														maxLength: 1024,
-														id: config.info.name + '-ban-14d-reason',
-														success: false,
-														onChange: (value, instance) => {
-															if (value.length) {
-																instance.props.errorMessage = null;
-																instance.props.success = true;
-															} else {
-																instance.props.errorMessage = 'Musisz podać powód bana.';
-																instance.props.success = false;
-															}
-														},
-													}),
-												]), {
-													danger: true,
-													confirmText: 'Ban',
-													cancelText: 'Anuluj',
-													onConfirm: function() {
-														let reason = document.getElementById(config.info.name + '-ban-14d-reason').value;
-														if (!reason)
-														{
-															BdApi.showToast('Ban nieudany: Brak powodu.', {type: 'error'});
-															return;
-														}
-
-														tasks.temp_ban(user.id, 14, reason);
-													},
-												}
-											);
-
-											setTimeout(function(){document.getElementById(config.info.name + '-ban-14d-reason').focus();}, 0);
-										}
-									}),
-									BDFDB.ContextMenuUtils.createItem(BDFDB.LibraryComponents.MenuItems.MenuItem, {
-										label: 'Ban permanentny',
-										id: 'perm-ban',
-										action: _ => {
-											BdApi.showConfirmationModal(
-												`Ban permanentny`, action_popup__get_user_header(user.id, user.tag).concat([
-													BDFDB.ReactUtils.createElement(BDFDB.LibraryComponents.TextInput, {
-														autoFocus: true,
-														errorMessage: 'Musisz podać powód bana.',
-														value: '',
-														placeholder: 'Powód bana',
-														size: BDFDB.LibraryComponents.TextInput.Sizes.DEFAULT,
-														maxLength: 1024,
-														id: config.info.name + '-perm-ban-reason',
-														success: false,
-														onChange: (value, instance) => {
-															if (value.length) {
-																instance.props.errorMessage = null;
-																instance.props.success = true;
-															} else {
-																instance.props.errorMessage = 'Musisz podać powód bana.';
-																instance.props.success = false;
-															}
-														},
-													}),
-												]), {
-													danger: true,
-													confirmText: 'Ban',
-													cancelText: 'Anuluj',
-													onConfirm: function() {
-														let reason = document.getElementById(config.info.name + '-perm-ban-reason').value;
-														if (!reason)
-														{
-															BdApi.showToast('Ban nieudany: Brak powodu.', {type: 'error'});
-															return;
-														}
-
-														tasks.perm_ban(user.id, reason);
-													},
-												}
-											);
-
-											setTimeout(function(){document.getElementById(config.info.name + '-perm-ban-reason').focus();}, 0);
-										}
-									}),
-								]
-							})
-						})
-					]
+							label: 'Sprawdź statystyki',
+							id: 'stat',
+							action: _ => {
+								tasks.execute_command(`stat!user ${user.id}`);
+							}
+						}),
+					);
+				if (!BDFDB.UserUtils.can('MANAGE_MESSAGES', user.id))
+					menuEntries.push(BDFDB.ContextMenuUtils.createItem(BDFDB.LibraryComponents.MenuItems.MenuItem, {
+						label: 'Zaproś na Pomoc Supportu',
+						id: 'sup',
+						action: _ => {
+							tasks.execute_command(`/sup ${user.id}`);
+						}
+					}));
+				
+				contextMenuItems.push(BDFDB.ContextMenuUtils.createItem(BDFDB.LibraryComponents.MenuItems.MenuItem, {
+					label: 'Reverse┋Menu',
+					id: config.info.name + '-Menu-UserContextMenu',
+					children: BDFDB.ContextMenuUtils.createItem(BDFDB.LibraryComponents.MenuItems.MenuGroup, {
+						children: menuEntries,
+					})
 				}));
+				if (!BDFDB.UserUtils.can('MANAGE_MESSAGES', user.id)) {
+					contextMenuItems.push(BDFDB.ContextMenuUtils.createItem(BDFDB.LibraryComponents.MenuItems.MenuItem, {
+						label: 'Reverse┋Kary',
+						id: config.info.name + '-Kary-UserContextMenu',
+						children: BDFDB.ContextMenuUtils.createItem(BDFDB.LibraryComponents.MenuItems.MenuGroup, {
+							children: [
+								BDFDB.ContextMenuUtils.createItem(BDFDB.LibraryComponents.MenuItems.MenuItem, {
+									label: 'Notatka',
+									id: 'note',
+									action: _ => {
+										BdApi.showConfirmationModal(
+											`Notatka`, action_popup__get_user_header(user.id, user.tag).concat([
+												BDFDB.ReactUtils.createElement(BDFDB.LibraryComponents.TextInput, {
+													autoFocus: true,
+													errorMessage: 'Musisz podać treść notatki.',
+													value: '',
+													placeholder: 'Treść notatki',
+													size: BDFDB.LibraryComponents.TextInput.Sizes.DEFAULT,
+													maxLength: 1024,
+													id: config.info.name + '-note-text',
+													success: false,
+													onChange: (value, instance) => {
+														if (value.length) {
+															instance.props.errorMessage = null;
+															instance.props.success = true;
+														} else {
+															instance.props.errorMessage = 'Musisz podać treść notatki.';
+															instance.props.success = false;
+														}
+													},
+												}),
+											]), {
+												danger: true,
+												confirmText: 'Note',
+												cancelText: 'Anuluj',
+												onConfirm: function() {
+													let reason = document.getElementById(config.info.name + '-note-text').value;
+													if (!reason)
+													{
+														BdApi.showToast('Notatka niezapisana: Brak treści.', {type: 'error'});
+														return;
+													}
+
+													tasks.note(user.id, reason);
+												},
+											}
+										);
+
+										setTimeout(function(){document.getElementById(config.info.name + '-note-text').focus();}, 0);
+									}
+								}),
+								BDFDB.ContextMenuUtils.createItem(BDFDB.LibraryComponents.FormComponents.FormDivider, {id: 'separator-between-note-and-tmute'}),
+								BDFDB.ContextMenuUtils.createItem(BDFDB.LibraryComponents.MenuItems.MenuItem, {
+									label: 'Ostrzeżenie (tekstowe)',
+									id: 'twarn',
+									action: _ => {
+										BdApi.showConfirmationModal(
+											`Ostrzeżenie (tekstowe)`, action_popup__get_user_header(user.id, user.tag).concat([
+												BDFDB.ReactUtils.createElement(BDFDB.LibraryComponents.TextInput, {
+													autoFocus: true,
+													errorMessage: 'Musisz podać powód ostrzeżenia.',
+													value: '',
+													placeholder: 'Powód ostrzeżenia',
+													size: BDFDB.LibraryComponents.TextInput.Sizes.DEFAULT,
+													maxLength: 1024,
+													id: config.info.name + '-twarn-reason',
+													success: false,
+													onChange: (value, instance) => {
+														if (value.length) {
+															instance.props.errorMessage = null;
+															instance.props.success = true;
+														} else {
+															instance.props.errorMessage = 'Musisz podać powód ostrzeżenia (tekstowego).';
+															instance.props.success = false;
+														}
+													},
+												}),
+											]), {
+												danger: true,
+												confirmText: 'Warn',
+												cancelText: 'Anuluj',
+												onConfirm: function() {
+													let reason = document.getElementById(config.info.name + '-twarn-reason').value;
+													if (!reason)
+													{
+														BdApi.showToast('Warn nieudany: Brak powodu.', {type: 'error'});
+														return;
+													}
+
+													tasks.twarn(user.id, reason);
+												},
+											}
+										);
+
+										setTimeout(function(){document.getElementById(config.info.name + '-twarn-reason').focus();}, 0);
+									}
+								}),
+								BDFDB.ContextMenuUtils.createItem(BDFDB.LibraryComponents.MenuItems.MenuItem, {
+									label: 'Mute (tekstowy) na 2 dni',
+									id: 'tmute-2d',
+									action: _ => {
+										BdApi.showConfirmationModal(
+											`Mute (tekstowy) — 2 dni`, action_popup__get_user_header(user.id, user.tag).concat([
+												BDFDB.ReactUtils.createElement(BDFDB.LibraryComponents.TextInput, {
+													autoFocus: true,
+													errorMessage: 'Musisz podać powód muta.',
+													value: '',
+													placeholder: 'Powód muta',
+													size: BDFDB.LibraryComponents.TextInput.Sizes.DEFAULT,
+													maxLength: 1024,
+													id: config.info.name + '-tmute-2d-reason',
+													success: false,
+													onChange: (value, instance) => {
+														if (value.length) {
+															instance.props.errorMessage = null;
+															instance.props.success = true;
+														} else {
+															instance.props.errorMessage = 'Musisz podać powód muta.';
+															instance.props.success = false;
+														}
+													},
+												}),
+											]), {
+												danger: true,
+												confirmText: 'Mute',
+												cancelText: 'Anuluj',
+												onConfirm: function() {
+													let reason = document.getElementById(config.info.name + '-tmute-2d-reason').value;
+													if (!reason)
+													{
+														BdApi.showToast('Mute nieudany: Brak powodu.', {type: 'error'});
+														return;
+													}
+
+													tasks.execute_command(`/tmute ${user.id} 2d ${reason}`);
+												},
+											}
+										);
+
+										setTimeout(function(){document.getElementById(config.info.name + '-tmute-2d-reason').focus();}, 0);
+									}
+								}),
+								BDFDB.ContextMenuUtils.createItem(BDFDB.LibraryComponents.MenuItems.MenuItem, {
+									label: 'Mute (tekstowy) na 4 dni',
+									id: 'tmute-4d',
+									action: _ => {
+										BdApi.showConfirmationModal(
+											`Mute (tekstowy) — 4 dni`, action_popup__get_user_header(user.id, user.tag).concat([
+												BDFDB.ReactUtils.createElement(BDFDB.LibraryComponents.TextInput, {
+													autoFocus: true,
+													errorMessage: 'Musisz podać powód muta.',
+													value: '',
+													placeholder: 'Powód muta',
+													size: BDFDB.LibraryComponents.TextInput.Sizes.DEFAULT,
+													maxLength: 1024,
+													id: config.info.name + '-tmute-4d-reason',
+													success: false,
+													onChange: (value, instance) => {
+														if (value.length) {
+															instance.props.errorMessage = null;
+															instance.props.success = true;
+														} else {
+															instance.props.errorMessage = 'Musisz podać powód muta.';
+															instance.props.success = false;
+														}
+													},
+												}),
+											]), {
+												danger: true,
+												confirmText: 'Mute',
+												cancelText: 'Anuluj',
+												onConfirm: function() {
+													let reason = document.getElementById(config.info.name + '-tmute-4d-reason').value;
+													if (!reason)
+													{
+														BdApi.showToast('Mute nieudany: Brak powodu.', {type: 'error'});
+														return;
+													}
+
+													tasks.execute_command(`/tmute ${user.id} 4d ${reason}`);
+												},
+											}
+										);
+
+										setTimeout(function(){document.getElementById(config.info.name + '-tmute-4d-reason').focus();}, 0);
+									}
+								}),
+								BDFDB.ContextMenuUtils.createItem(BDFDB.LibraryComponents.MenuItems.MenuItem, {
+									label: 'Mute (tekstowy) na 8 dni',
+									id: 'tmute-8d',
+									action: _ => {
+										BdApi.showConfirmationModal(
+											`Mute (tekstowy) — 8 dni`, action_popup__get_user_header(user.id, user.tag).concat([
+												BDFDB.ReactUtils.createElement(BDFDB.LibraryComponents.TextInput, {
+													autoFocus: true,
+													errorMessage: 'Musisz podać powód muta.',
+													value: '',
+													placeholder: 'Powód muta',
+													size: BDFDB.LibraryComponents.TextInput.Sizes.DEFAULT,
+													maxLength: 1024,
+													id: config.info.name + '-tmute-8d-reason',
+													success: false,
+													onChange: (value, instance) => {
+														if (value.length) {
+															instance.props.errorMessage = null;
+															instance.props.success = true;
+														} else {
+															instance.props.errorMessage = 'Musisz podać powód muta.';
+															instance.props.success = false;
+														}
+													},
+												}),
+											]), {
+												danger: true,
+												confirmText: 'Mute',
+												cancelText: 'Anuluj',
+												onConfirm: function() {
+													let reason = document.getElementById(config.info.name + '-tmute-8d-reason').value;
+													if (!reason)
+													{
+														BdApi.showToast('Mute nieudany: Brak powodu.', {type: 'error'});
+														return;
+													}
+
+													tasks.execute_command(`/tmute ${user.id} 8d ${reason}`);
+												},
+											}
+										);
+
+										setTimeout(function(){document.getElementById(config.info.name + '-tmute-8d-reason').focus();}, 0);
+									}
+								}),
+								BDFDB.ContextMenuUtils.createItem(BDFDB.LibraryComponents.FormComponents.FormDivider, {id: 'separator-between-tmute-and-vmute'}),
+								BDFDB.ContextMenuUtils.createItem(BDFDB.LibraryComponents.MenuItems.MenuItem, {
+									label: 'Ostrzeżenie (głosowe)',
+									id: 'vwarn',
+									action: _ => {
+										BdApi.showConfirmationModal(
+											`Ostrzeżenie (głosowe)`, action_popup__get_user_header(user.id, user.tag).concat([
+												BDFDB.ReactUtils.createElement(BDFDB.LibraryComponents.TextInput, {
+													autoFocus: true,
+													errorMessage: 'Musisz podać powód ostrzeżenia.',
+													value: '',
+													placeholder: 'Powód ostrzeżenia',
+													size: BDFDB.LibraryComponents.TextInput.Sizes.DEFAULT,
+													maxLength: 1024,
+													id: config.info.name + '-vwarn-reason',
+													success: false,
+													onChange: (value, instance) => {
+														if (value.length) {
+															instance.props.errorMessage = null;
+															instance.props.success = true;
+														} else {
+															instance.props.errorMessage = 'Musisz podać powód ostrzeżenia.';
+															instance.props.success = false;
+														}
+													},
+												}),
+											]), {
+												danger: true,
+												confirmText: 'Warn',
+												cancelText: 'Anuluj',
+												onConfirm: function() {
+													let reason = document.getElementById(config.info.name + '-vwarn-reason').value;
+													if (!reason)
+													{
+														BdApi.showToast('Warn nieudany: Brak powodu.', {type: 'error'});
+														return;
+													}
+
+													tasks.vwarn(user.id, reason);
+												},
+											}
+										);
+
+										setTimeout(function(){document.getElementById(config.info.name + '-vwarn-reason').focus();}, 0);
+									}
+								}),
+								BDFDB.ContextMenuUtils.createItem(BDFDB.LibraryComponents.MenuItems.MenuItem, {
+									label: 'Mute (głosowy) na 2 dni',
+									id: 'vmute-2d',
+									action: _ => {
+										BdApi.showConfirmationModal(
+											`Mute (głosowy) — 2 dni`, action_popup__get_user_header(user.id, user.tag).concat([
+												BDFDB.ReactUtils.createElement(BDFDB.LibraryComponents.TextInput, {
+													autoFocus: true,
+													errorMessage: 'Musisz podać powód muta.',
+													value: '',
+													placeholder: 'Powód muta',
+													size: BDFDB.LibraryComponents.TextInput.Sizes.DEFAULT,
+													maxLength: 1024,
+													id: config.info.name + '-vmute-2d-reason',
+													success: false,
+													onChange: (value, instance) => {
+														if (value.length) {
+															instance.props.errorMessage = null;
+															instance.props.success = true;
+														} else {
+															instance.props.errorMessage = 'Musisz podać powód muta.';
+															instance.props.success = false;
+														}
+													},
+												}),
+											]), {
+												danger: true,
+												confirmText: 'Mute',
+												cancelText: 'Anuluj',
+												onConfirm: function() {
+													let reason = document.getElementById(config.info.name + '-vmute-2d-reason').value;
+													if (!reason)
+													{
+														BdApi.showToast('Mute nieudany: Brak powodu.', {type: 'error'});
+														return;
+													}
+
+													tasks.vmute(user.id, 2, reason);
+												},
+											}
+										);
+
+										setTimeout(function(){document.getElementById(config.info.name + '-vmute-2d-reason').focus();}, 0);
+									}
+								}),
+								BDFDB.ContextMenuUtils.createItem(BDFDB.LibraryComponents.MenuItems.MenuItem, {
+									label: 'Mute (głosowy) na 4 dni',
+									id: 'vmute-4d',
+									action: _ => {
+										BdApi.showConfirmationModal(
+											`Mute (głosowy) — 4 dni`, action_popup__get_user_header(user.id, user.tag).concat([
+												BDFDB.ReactUtils.createElement(BDFDB.LibraryComponents.TextInput, {
+													autoFocus: true,
+													errorMessage: 'Musisz podać powód muta.',
+													value: '',
+													placeholder: 'Powód muta',
+													size: BDFDB.LibraryComponents.TextInput.Sizes.DEFAULT,
+													maxLength: 1024,
+													id: config.info.name + '-vmute-4d-reason',
+													success: false,
+													onChange: (value, instance) => {
+														if (value.length) {
+															instance.props.errorMessage = null;
+															instance.props.success = true;
+														} else {
+															instance.props.errorMessage = 'Musisz podać powód muta.';
+															instance.props.success = false;
+														}
+													},
+												}),
+											]), {
+												danger: true,
+												confirmText: 'Mute',
+												cancelText: 'Anuluj',
+												onConfirm: function() {
+													let reason = document.getElementById(config.info.name + '-vmute-4d-reason').value;
+													if (!reason)
+													{
+														BdApi.showToast('Mute nieudany: Brak powodu.', {type: 'error'});
+														return;
+													}
+
+													tasks.vmute(user.id, 4, reason);
+												},
+											}
+										);
+
+										setTimeout(function(){document.getElementById(config.info.name + '-vmute-4d-reason').focus();}, 0);
+									}
+								}),
+								BDFDB.ContextMenuUtils.createItem(BDFDB.LibraryComponents.MenuItems.MenuItem, {
+									label: 'Mute (głosowy) na 8 dni',
+									id: 'vmute-8d',
+									action: _ => {
+										BdApi.showConfirmationModal(
+											`Mute (głosowy) — 8 dni`, action_popup__get_user_header(user.id, user.tag).concat([
+												BDFDB.ReactUtils.createElement(BDFDB.LibraryComponents.TextInput, {
+													autoFocus: true,
+													errorMessage: 'Musisz podać powód muta.',
+													value: '',
+													placeholder: 'Powód muta',
+													size: BDFDB.LibraryComponents.TextInput.Sizes.DEFAULT,
+													maxLength: 1024,
+													id: config.info.name + '-vmute-8d-reason',
+													success: false,
+													onChange: (value, instance) => {
+														if (value.length) {
+															instance.props.errorMessage = null;
+															instance.props.success = true;
+														} else {
+															instance.props.errorMessage = 'Musisz podać powód muta.';
+															instance.props.success = false;
+														}
+													},
+												}),
+											]), {
+												danger: true,
+												confirmText: 'Mute',
+												cancelText: 'Anuluj',
+												onConfirm: function() {
+													let reason = document.getElementById(config.info.name + '-vmute-8d-reason').value;
+													if (!reason)
+													{
+														BdApi.showToast('Mute nieudany: Brak powodu.', {type: 'error'});
+														return;
+													}
+
+													tasks.vmute(user.id, 8, reason);
+												},
+											}
+										);
+
+										setTimeout(function(){document.getElementById(config.info.name + '-vmute-8d-reason').focus();}, 0);
+									}
+								}),
+								BDFDB.ContextMenuUtils.createItem(BDFDB.LibraryComponents.FormComponents.FormDivider, {id: 'separator-between-vmute-and-sban'}),
+								BDFDB.ContextMenuUtils.createItem(BDFDB.LibraryComponents.MenuItems.MenuItem, {
+									label: 'Ban (miękki) na 2 dni',
+									id: 'sban-2d',
+									action: _ => {
+										BdApi.showConfirmationModal(
+											`Ban (miękki) — 2 dni`, action_popup__get_user_header(user.id, user.tag).concat([
+												BDFDB.ReactUtils.createElement(BDFDB.LibraryComponents.TextInput, {
+													autoFocus: true,
+													errorMessage: 'Musisz podać powód bana.',
+													value: '',
+													placeholder: 'Powód bana',
+													size: BDFDB.LibraryComponents.TextInput.Sizes.DEFAULT,
+													maxLength: 1024,
+													id: config.info.name + '-sban-2d-reason',
+													success: false,
+													onChange: (value, instance) => {
+														if (value.length) {
+															instance.props.errorMessage = null;
+															instance.props.success = true;
+														} else {
+															instance.props.errorMessage = 'Musisz podać powód bana.';
+															instance.props.success = false;
+														}
+													},
+												}),
+											]), {
+												danger: true,
+												confirmText: 'Ban',
+												cancelText: 'Anuluj',
+												onConfirm: function() {
+													let reason = document.getElementById(config.info.name + '-sban-2d-reason').value;
+													if (!reason)
+													{
+														BdApi.showToast('Ban nieudany: Brak powodu.', {type: 'error'});
+														return;
+													}
+
+													tasks.temp_sban(user.id, 2, reason);
+												},
+											}
+										);
+
+										setTimeout(function(){document.getElementById(config.info.name + '-sban-2d-reason').focus();}, 0);
+									}
+								}),
+								BDFDB.ContextMenuUtils.createItem(BDFDB.LibraryComponents.MenuItems.MenuItem, {
+									label: 'Ban (miękki) na 4 dni',
+									id: 'sban-4d',
+									action: _ => {
+										BdApi.showConfirmationModal(
+											`Ban (miękki) — 4 dni`, action_popup__get_user_header(user.id, user.tag).concat([
+												BDFDB.ReactUtils.createElement(BDFDB.LibraryComponents.TextInput, {
+													autoFocus: true,
+													errorMessage: 'Musisz podać powód bana.',
+													value: '',
+													placeholder: 'Powód bana',
+													size: BDFDB.LibraryComponents.TextInput.Sizes.DEFAULT,
+													maxLength: 1024,
+													id: config.info.name + '-sban-4d-reason',
+													success: false,
+													onChange: (value, instance) => {
+														if (value.length) {
+															instance.props.errorMessage = null;
+															instance.props.success = true;
+														} else {
+															instance.props.errorMessage = 'Musisz podać powód bana.';
+															instance.props.success = false;
+														}
+													},
+												}),
+											]), {
+												danger: true,
+												confirmText: 'Ban',
+												cancelText: 'Anuluj',
+												onConfirm: function() {
+													let reason = document.getElementById(config.info.name + '-sban-4d-reason').value;
+													if (!reason)
+													{
+														BdApi.showToast('Ban nieudany: Brak powodu.', {type: 'error'});
+														return;
+													}
+
+													tasks.temp_sban(user.id, 4, reason);
+												},
+											}
+										);
+
+										setTimeout(function(){document.getElementById(config.info.name + '-sban-4d-reason').focus();}, 0);
+									}
+								}),
+								BDFDB.ContextMenuUtils.createItem(BDFDB.LibraryComponents.MenuItems.MenuItem, {
+									label: 'Ban (miękki) na 8 dni',
+									id: 'sban-8d',
+									action: _ => {
+										BdApi.showConfirmationModal(
+											`Ban (miękki) — 8 dni`, action_popup__get_user_header(user.id, user.tag).concat([
+												BDFDB.ReactUtils.createElement(BDFDB.LibraryComponents.TextInput, {
+													autoFocus: true,
+													errorMessage: 'Musisz podać powód bana.',
+													value: '',
+													placeholder: 'Powód bana',
+													size: BDFDB.LibraryComponents.TextInput.Sizes.DEFAULT,
+													maxLength: 1024,
+													id: config.info.name + '-sban-8d-reason',
+													success: false,
+													onChange: (value, instance) => {
+														if (value.length) {
+															instance.props.errorMessage = null;
+															instance.props.success = true;
+														} else {
+															instance.props.errorMessage = 'Musisz podać powód bana.';
+															instance.props.success = false;
+														}
+													},
+												}),
+											]), {
+												danger: true,
+												confirmText: 'Ban',
+												cancelText: 'Anuluj',
+												onConfirm: function() {
+													let reason = document.getElementById(config.info.name + '-sban-8d-reason').value;
+													if (!reason)
+													{
+														BdApi.showToast('Ban nieudany: Brak powodu.', {type: 'error'});
+														return;
+													}
+
+													tasks.temp_sban(user.id, 8, reason);
+												},
+											}
+										);
+
+										setTimeout(function(){document.getElementById(config.info.name + '-sban-8d-reason').focus();}, 0);
+									}
+								}),
+								BDFDB.ContextMenuUtils.createItem(BDFDB.LibraryComponents.MenuItems.MenuItem, {
+									label: 'Perm Ban (miękki)',
+									id: 'perm-sban',
+									action: _ => {
+										BdApi.showConfirmationModal(
+											`Perm Ban (miękki)`, action_popup__get_user_header(user.id, user.tag).concat([
+												BDFDB.ReactUtils.createElement(BDFDB.LibraryComponents.TextInput, {
+													autoFocus: true,
+													errorMessage: 'Musisz podać powód bana.',
+													value: '',
+													placeholder: 'Powód bana',
+													size: BDFDB.LibraryComponents.TextInput.Sizes.DEFAULT,
+													maxLength: 1024,
+													id: config.info.name + '-perm-sban-reason',
+													success: false,
+													onChange: (value, instance) => {
+														if (value.length) {
+															instance.props.errorMessage = null;
+															instance.props.success = true;
+														} else {
+															instance.props.errorMessage = 'Musisz podać powód bana.';
+															instance.props.success = false;
+														}
+													},
+												}),
+											]), {
+												danger: true,
+												confirmText: 'Ban',
+												cancelText: 'Anuluj',
+												onConfirm: function() {
+													let reason = document.getElementById(config.info.name + '-perm-sban-reason').value;
+													if (!reason)
+													{
+														BdApi.showToast('Ban nieudany: Brak powodu.', {type: 'error'});
+														return;
+													}
+
+													tasks.perm_sban(user.id, reason);
+												},
+											}
+										);
+
+										setTimeout(function(){document.getElementById(config.info.name + '-perm-sban-reason').focus();}, 0);
+									}
+								}),
+								BDFDB.ContextMenuUtils.createItem(BDFDB.LibraryComponents.FormComponents.FormDivider, {id: 'separator-between-sban-and-ban'}),
+								BDFDB.ContextMenuUtils.createItem(BDFDB.LibraryComponents.MenuItems.MenuItem, {
+									label: 'Ban na 2 dni',
+									id: 'ban-2d',
+									action: _ => {
+										BdApi.showConfirmationModal(
+											`Ban — 2 dni`, action_popup__get_user_header(user.id, user.tag).concat([
+												BDFDB.ReactUtils.createElement(BDFDB.LibraryComponents.TextInput, {
+													autoFocus: true,
+													errorMessage: 'Musisz podać powód bana.',
+													value: '',
+													placeholder: 'Powód bana',
+													size: BDFDB.LibraryComponents.TextInput.Sizes.DEFAULT,
+													maxLength: 1024,
+													id: config.info.name + '-ban-2d-reason',
+													success: false,
+													onChange: (value, instance) => {
+														if (value.length) {
+															instance.props.errorMessage = null;
+															instance.props.success = true;
+														} else {
+															instance.props.errorMessage = 'Musisz podać powód bana.';
+															instance.props.success = false;
+														}
+													},
+												}),
+											]), {
+												danger: true,
+												confirmText: 'Ban',
+												cancelText: 'Anuluj',
+												onConfirm: function() {
+													let reason = document.getElementById(config.info.name + '-ban-2d-reason').value;
+													if (!reason)
+													{
+														BdApi.showToast('Ban nieudany: Brak powodu.', {type: 'error'});
+														return;
+													}
+
+													tasks.temp_ban(user.id, 2, reason);
+												},
+											}
+										);
+
+										setTimeout(function(){document.getElementById(config.info.name + '-ban-2d-reason').focus();}, 0);
+									}
+								}),
+								BDFDB.ContextMenuUtils.createItem(BDFDB.LibraryComponents.MenuItems.MenuItem, {
+									label: 'Ban na 4 dni',
+									id: 'ban-4d',
+									action: _ => {
+										BdApi.showConfirmationModal(
+											`Ban — 4 dni`, action_popup__get_user_header(user.id, user.tag).concat([
+												BDFDB.ReactUtils.createElement(BDFDB.LibraryComponents.TextInput, {
+													autoFocus: true,
+													errorMessage: 'Musisz podać powód bana.',
+													value: '',
+													placeholder: 'Powód bana',
+													size: BDFDB.LibraryComponents.TextInput.Sizes.DEFAULT,
+													maxLength: 1024,
+													id: config.info.name + '-ban-4d-reason',
+													success: false,
+													onChange: (value, instance) => {
+														if (value.length) {
+															instance.props.errorMessage = null;
+															instance.props.success = true;
+														} else {
+															instance.props.errorMessage = 'Musisz podać powód bana.';
+															instance.props.success = false;
+														}
+													},
+												}),
+											]), {
+												danger: true,
+												confirmText: 'Ban',
+												cancelText: 'Anuluj',
+												onConfirm: function() {
+													let reason = document.getElementById(config.info.name + '-ban-4d-reason').value;
+													if (!reason)
+													{
+														BdApi.showToast('Ban nieudany: Brak powodu.', {type: 'error'});
+														return;
+													}
+
+													tasks.temp_ban(user.id, 4, reason);
+												},
+											}
+										);
+
+										setTimeout(function(){document.getElementById(config.info.name + '-ban-4d-reason').focus();}, 0);
+									}
+								}),
+								BDFDB.ContextMenuUtils.createItem(BDFDB.LibraryComponents.MenuItems.MenuItem, {
+									label: 'Ban na 8 dni',
+									id: 'ban-8d',
+									action: _ => {
+										BdApi.showConfirmationModal(
+											`Ban — 8 dni`, action_popup__get_user_header(user.id, user.tag).concat([
+												BDFDB.ReactUtils.createElement(BDFDB.LibraryComponents.TextInput, {
+													autoFocus: true,
+													errorMessage: 'Musisz podać powód bana.',
+													value: '',
+													placeholder: 'Powód bana',
+													size: BDFDB.LibraryComponents.TextInput.Sizes.DEFAULT,
+													maxLength: 1024,
+													id: config.info.name + '-ban-8d-reason',
+													success: false,
+													onChange: (value, instance) => {
+														if (value.length) {
+															instance.props.errorMessage = null;
+															instance.props.success = true;
+														} else {
+															instance.props.errorMessage = 'Musisz podać powód bana.';
+															instance.props.success = false;
+														}
+													},
+												}),
+											]), {
+												danger: true,
+												confirmText: 'Ban',
+												cancelText: 'Anuluj',
+												onConfirm: function() {
+													let reason = document.getElementById(config.info.name + '-ban-8d-reason').value;
+													if (!reason)
+													{
+														BdApi.showToast('Ban nieudany: Brak powodu.', {type: 'error'});
+														return;
+													}
+
+													tasks.temp_ban(user.id, 8, reason);
+												},
+											}
+										);
+
+										setTimeout(function(){document.getElementById(config.info.name + '-ban-8d-reason').focus();}, 0);
+									}
+								}),
+								BDFDB.ContextMenuUtils.createItem(BDFDB.LibraryComponents.MenuItems.MenuItem, {
+									label: 'Perm Ban',
+									id: 'perm-ban',
+									action: _ => {
+										BdApi.showConfirmationModal(
+											`Perm Ban`, action_popup__get_user_header(user.id, user.tag).concat([
+												BDFDB.ReactUtils.createElement(BDFDB.LibraryComponents.TextInput, {
+													autoFocus: true,
+													errorMessage: 'Musisz podać powód bana.',
+													value: '',
+													placeholder: 'Powód bana',
+													size: BDFDB.LibraryComponents.TextInput.Sizes.DEFAULT,
+													maxLength: 1024,
+													id: config.info.name + '-perm-ban-reason',
+													success: false,
+													onChange: (value, instance) => {
+														if (value.length) {
+															instance.props.errorMessage = null;
+															instance.props.success = true;
+														} else {
+															instance.props.errorMessage = 'Musisz podać powód bana.';
+															instance.props.success = false;
+														}
+													},
+												}),
+											]), {
+												danger: true,
+												confirmText: 'Ban',
+												cancelText: 'Anuluj',
+												onConfirm: function() {
+													let reason = document.getElementById(config.info.name + '-perm-ban-reason').value;
+													if (!reason)
+													{
+														BdApi.showToast('Ban nieudany: Brak powodu.', {type: 'error'});
+														return;
+													}
+
+													tasks.perm_ban(user.id, reason);
+												},
+											}
+										);
+
+										setTimeout(function(){document.getElementById(config.info.name + '-perm-ban-reason').focus();}, 0);
+									}
+								}),
+								BDFDB.ContextMenuUtils.createItem(BDFDB.LibraryComponents.MenuItems.MenuItem, {
+									label: 'Paula',
+									id: 'paula',
+									action: _ => {
+										BdApi.showConfirmationModal(
+											`Paula`, action_popup__get_user_header(user.id, user.tag), {
+												danger: true,
+												confirmText: 'Paula',
+												cancelText: 'Anuluj',
+												onConfirm: function() {
+													tasks.execute_command(`/paula ${user.id}`);
+												},
+											}
+										);
+
+										setTimeout(function(){document.getElementById(config.info.name + '-paula-reason').focus();}, 0);
+									}
+								}),
+							],
+						})
+					}));
+				}
+				
+				children.splice(index > -1 ? index : children.length, 0, BDFDB.ContextMenuUtils.createItem(BDFDB.LibraryComponents.MenuItems.MenuGroup, {children: contextMenuItems}));
 			}
 		};
 	})(window.BDFDB_Global.PluginUtils.buildPlugin(config));
