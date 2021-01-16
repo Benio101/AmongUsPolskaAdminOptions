@@ -31,7 +31,7 @@ module.exports = (() =>
 			author: 'Benio',
 			authorId: '231850998279176193',
 			invite: 'reversecommunity',
-			version: '3.0.0',
+			version: '3.0.1',
 		},
 
 		// added, fixed, improved
@@ -39,7 +39,7 @@ module.exports = (() =>
 		{
 			improved:
 			{
-				'Bot': '`Zmieniono bota z Dyno na Reverse Bota'
+				'Bot': 'Zmieniono bota z Dyno na Reverse Bota'
 			}
 		},
 
