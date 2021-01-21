@@ -31,7 +31,7 @@ module.exports = (() =>
 			author: 'Benio',
 			authorId: '231850998279176193',
 			invite: 'reversecommunity',
-			version: '3.0.1',
+			version: '3.1.0',
 		},
 
 		// added, fixed, improved
@@ -39,7 +39,12 @@ module.exports = (() =>
 		{
 			improved:
 			{
-				'Bot': 'Zmieniono bota z Dyno na Reverse Bota'
+				'Statystyki': 'Statystyki sprawdzane są teraz nie tylko na statbocie, ale i na reverse bocie',
+				'Kolory': 'Usunięto niektóre kolory z menu kontekstowego'
+			},
+			added:
+			{
+				'Menu VC': 'Dodano menu kontekstowe na kanałach głosowych'
 			}
 		},
 
@@ -251,22 +256,12 @@ module.exports = (() =>
 
 		#user-context-${config.info.name + '-Kary-UserContextMenu--paula'}
 		{
-			color: #E090E0;
+			color: #E04040;
 		}
 		#user-context-${config.info.name + '-Kary-UserContextMenu--paula'}.da-focused
 		{
-			color: #E090E0;
-			background: #E090E040;
-		}
-
-		#user-context-${config.info.name + '-Menu-UserContextMenu'}
-		{
-			color: #40E040;
-		}
-		#user-context-${config.info.name + '-Menu-UserContextMenu'}.da-focused
-		{
-			color: #40E040;
-			background: #40E04040;
+			color: #E0E0E0;
+			background: #E04040;
 		}
 
 		#user-context-${config.info.name + '-Menu-UserContextMenu--sup'}
@@ -281,12 +276,11 @@ module.exports = (() =>
 
 		#user-context-${config.info.name + '-Menu-UserContextMenu--move'}
 		{
-			color: #40E040;
+			
 		}
 		#user-context-${config.info.name + '-Menu-UserContextMenu--move'}.da-focused
 		{
-			color: #40E040;
-			background: #40E04040;
+			
 		}
 
 		#user-context-${config.info.name + '-Menu-UserContextMenu--stat'}
@@ -297,6 +291,74 @@ module.exports = (() =>
 		{
 			color: #4090E0;
 			background: #4090E040;
+		}
+
+		#channel-context-${config.info.name + '-Menu-ChannelContextMenu'}
+		{
+			
+		}
+		#channel-context-${config.info.name + '-Menu-ChannelContextMenu'}.da-focused
+		{
+			
+		}
+
+		#channel-context-${config.info.name + '-Menu-ChannelContextMenu--move'}
+		{
+			
+		}
+		#channel-context-${config.info.name + '-Menu-ChannelContextMenu--move'}.da-focused
+		{
+			
+		}
+
+		#channel-context-${config.info.name + '-Menu-ChannelContextMenu--mute'}
+		{
+			color: #E04040;
+		}
+		#channel-context-${config.info.name + '-Menu-ChannelContextMenu--mute'}.da-focused
+		{
+			color: #E0E0E0;
+			background: #E04040;
+		}
+
+		#channel-context-${config.info.name + '-Menu-ChannelContextMenu--unmute'}
+		{
+			color: #40E040;
+		}
+		#channel-context-${config.info.name + '-Menu-ChannelContextMenu--unmute'}.da-focused
+		{
+			color: #40E040;
+			background: #40E04040;
+		}
+
+		#channel-context-${config.info.name + '-Menu-ChannelContextMenu--deafen'}
+		{
+			color: #E04040;
+		}
+		#channel-context-${config.info.name + '-Menu-ChannelContextMenu--deafen'}.da-focused
+		{
+			color: #E0E0E0;
+			background: #E04040;
+		}
+
+		#channel-context-${config.info.name + '-Menu-ChannelContextMenu--undeafen'}
+		{
+			color: #40E040;
+		}
+		#channel-context-${config.info.name + '-Menu-ChannelContextMenu--undeafen'}.da-focused
+		{
+			color: #40E040;
+			background: #40E04040;
+		}
+
+		#channel-context-${config.info.name + '-Menu-ChannelContextMenu--dc'}
+		{
+			color: #E04040;
+		}
+		#channel-context-${config.info.name + '-Menu-ChannelContextMenu--dc'}.da-focused
+		{
+			color: #E0E0E0;
+			background: #E04040;
 		}
 	`;
 
@@ -416,13 +478,11 @@ module.exports = (() =>
 	tasks.twarn = function(user_id, reason)
 	{
 		tasks.execute_command(`/twarn ${user_id} ${reason}`);
-		tasks.execute_command(`/twarns ${user_id}`);
 	}
 
 	tasks.vwarn = function(user_id, reason)
 	{
 		tasks.execute_command(`/vwarn ${user_id} ${reason}`);
-		tasks.execute_command(`/vwarns ${user_id}`);
 	}
 
 	tasks.note = function(user_id, reason)
@@ -1265,40 +1325,117 @@ module.exports = (() =>
 
 			onChannelContextMenu(e)
 			{
+				if (e?.instance?.props?.guild?.id != guild_id)
+					return;
+
+				if (!e?.instance?.props?.channel?.id)
+					return;
+
+				if (e?.instance?.props?.channel?.type != 2)
+					return;
 				
+				const channelID = e.instance.props.channel.id;
+				console.log(channelID);
+				let [children, index] = BDFDB.ContextMenuUtils.findItem(e.returnvalue, {id: 'devmode-copy-id', group: true});
+				let contextMenuItems = [];
+				let menuEntries = [];
+
+				menuEntries.push(BDFDB.ContextMenuUtils.createItem(BDFDB.LibraryComponents.MenuItems.MenuItem, {
+					label: 'Przenieś wszystkich do mnie',
+					id: 'move',
+					action: _ => {
+						tasks.execute_command(`/move ${channelID}`);
+					}
+				}));
+
+				menuEntries.push(BDFDB.ContextMenuUtils.createItem(BDFDB.LibraryComponents.FormComponents.FormDivider, {id: 'separator-between-move-and-mute'}));
+				menuEntries.push(BDFDB.ContextMenuUtils.createItem(BDFDB.LibraryComponents.MenuItems.MenuItem, {
+					label: 'Wycisz wszystkich',
+					id: 'mute',
+					action: _ => {
+						tasks.execute_command(`/mute ${channelID}`);
+					}
+				}));
+
+				menuEntries.push(BDFDB.ContextMenuUtils.createItem(BDFDB.LibraryComponents.MenuItems.MenuItem, {
+					label: 'Odcisz wszystkich',
+					id: 'unmute',
+					action: _ => {
+						tasks.execute_command(`/unmute ${channelID}`);
+					}
+				}));
+
+				menuEntries.push(BDFDB.ContextMenuUtils.createItem(BDFDB.LibraryComponents.FormComponents.FormDivider, {id: 'separator-between-unmute-and-deafen'}));
+				menuEntries.push(BDFDB.ContextMenuUtils.createItem(BDFDB.LibraryComponents.MenuItems.MenuItem, {
+					label: 'Ogłusz wszystkich',
+					id: 'deafen',
+					action: _ => {
+						tasks.execute_command(`/deafen ${channelID}`);
+					}
+				}));
+
+				menuEntries.push(BDFDB.ContextMenuUtils.createItem(BDFDB.LibraryComponents.MenuItems.MenuItem, {
+					label: 'Odogłusz wszystkich',
+					id: 'undeafen',
+					action: _ => {
+						tasks.execute_command(`/undeafen ${channelID}`);
+					}
+				}));
+
+				menuEntries.push(BDFDB.ContextMenuUtils.createItem(BDFDB.LibraryComponents.FormComponents.FormDivider, {id: 'separator-between-undeafen-and-dc'}));
+				menuEntries.push(BDFDB.ContextMenuUtils.createItem(BDFDB.LibraryComponents.MenuItems.MenuItem, {
+					label: 'Rozłącz wszystkich',
+					id: 'dc',
+					action: _ => {
+						tasks.execute_command(`/dc ${channelID}`);
+					}
+				}));
+
+				contextMenuItems.push(BDFDB.ContextMenuUtils.createItem(BDFDB.LibraryComponents.MenuItems.MenuItem, {
+					label: 'Reverse┋Menu',
+					id: config.info.name + '-Menu-ChannelContextMenu',
+					children: BDFDB.ContextMenuUtils.createItem(BDFDB.LibraryComponents.MenuItems.MenuGroup, {
+						children: menuEntries,
+					})
+				}));
+
+				children.splice(index > -1 ? index : children.length, 0, BDFDB.ContextMenuUtils.createItem(BDFDB.LibraryComponents.MenuItems.MenuGroup, {children: contextMenuItems}));
 			}
 		
 			onUserContextMenu(e)
 			{
-				if (discord_actions.getLastSelectedGuildId() != guild_id)
+				console.log(e);
+				if (e?.instance?.props?.guildId != guild_id)
+					return;
+
+				if (!e?.instance?.props?.user?.id)
 					return;
 				
-				if
-				(		e !== Object(e)
-					||	! 'instance' in e
-					||	e.instance !== Object(e.instance)
-					||	! 'props' in e.instance
-					||	e.instance.props !== Object(e.instance.props)
-				)
-					return;
-
 				let menu = e.instance.props;
-
-				if
-				(		! 'user' in menu
-					||	menu.user !== Object(menu.user)
-					||	! 'id' in menu.user
-					||	menu.user.id !== String(menu.user.id)
-				)
-					return;
-
 				let user = menu.user;
 
 				let [children, index] = BDFDB.ContextMenuUtils.findItem(e.returnvalue, {id: 'devmode-copy-id', group: true});
 				let contextMenuItems = [];
 				let menuEntries = [];
 
+				if (BDFDB.UserUtils.can('ADMINISTRATOR')) {
+					menuEntries.push(
+						BDFDB.ContextMenuUtils.createItem(BDFDB.LibraryComponents.MenuItems.MenuItem, {
+							label: 'Sprawdź statystyki',
+							id: 'stat',
+							action: _ => {
+								tasks.execute_command(`stat!user ${user.id}`);
+								tasks.execute_command(`/stat ${user.id}`);
+							}
+						}),
+					);
+				}
+
 				if (user.id != BDFDB.UserUtils.me.id) {
+					if (menuEntries.length == 1) {
+						menuEntries.push(BDFDB.ContextMenuUtils.createItem(BDFDB.LibraryComponents.FormComponents.FormDivider, {id: 'separator-between-stat-and-move'}));
+					}
+
 					menuEntries.push(BDFDB.ContextMenuUtils.createItem(BDFDB.LibraryComponents.MenuItems.MenuItem, {
 						label: 'Przenieś do mnie',
 						id: 'move',
@@ -1307,16 +1444,7 @@ module.exports = (() =>
 						}
 					}));
 				}
-				if (BDFDB.UserUtils.can('ADMINISTRATOR'))
-					menuEntries.push(
-						BDFDB.ContextMenuUtils.createItem(BDFDB.LibraryComponents.MenuItems.MenuItem, {
-							label: 'Sprawdź statystyki',
-							id: 'stat',
-							action: _ => {
-								tasks.execute_command(`stat!user ${user.id}`);
-							}
-						}),
-					);
+
 				if (!BDFDB.UserUtils.can('MANAGE_MESSAGES', user.id))
 					menuEntries.push(BDFDB.ContextMenuUtils.createItem(BDFDB.LibraryComponents.MenuItems.MenuItem, {
 						label: 'Zaproś na Pomoc Supportu',
@@ -1333,6 +1461,7 @@ module.exports = (() =>
 						children: menuEntries,
 					})
 				}));
+
 				if (!BDFDB.UserUtils.can('MANAGE_MESSAGES', user.id)) {
 					contextMenuItems.push(BDFDB.ContextMenuUtils.createItem(BDFDB.LibraryComponents.MenuItems.MenuItem, {
 						label: 'Reverse┋Kary',
