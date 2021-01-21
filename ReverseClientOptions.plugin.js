@@ -31,7 +31,7 @@ module.exports = (() =>
 			author: 'Benio',
 			authorId: '231850998279176193',
 			invite: 'reversecommunity',
-			version: '3.1.0',
+			version: '3.1.1',
 		},
 
 		// added, fixed, improved
@@ -45,6 +45,11 @@ module.exports = (() =>
 			added:
 			{
 				'Menu VC': 'Dodano menu kontekstowe na kanałach głosowych'
+			},
+			fixed:
+			{
+				'Mute (tekstowy)': 'Po komendzie /twarn nie następuje już komenda /twarns',
+				'Mute (głosowy)': 'Po komendzie /vwarn nie następuje już komenda /vwarns'
 			}
 		},
 
