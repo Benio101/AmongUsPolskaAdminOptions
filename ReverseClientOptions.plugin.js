@@ -31,7 +31,7 @@ module.exports = (() =>
 			author: 'Benio',
 			authorId: '231850998279176193',
 			invite: 'reversecommunity',
-			version: '3.1.1',
+			version: '3.1.2',
 		},
 
 		// added, fixed, improved
@@ -44,7 +44,8 @@ module.exports = (() =>
 			},
 			added:
 			{
-				'Menu VC': 'Dodano menu kontekstowe na kanałach głosowych'
+				'Menu VC': 'Dodano menu kontekstowe na kanałach głosowych',
+				'Nowa opcja': 'Przenieś wszystkich tutaj'
 			},
 			fixed:
 			{
@@ -1350,6 +1351,14 @@ module.exports = (() =>
 					id: 'move',
 					action: _ => {
 						tasks.execute_command(`/move ${channelID}`);
+					}
+				}));
+
+				menuEntries.push(BDFDB.ContextMenuUtils.createItem(BDFDB.LibraryComponents.MenuItems.MenuItem, {
+					label: 'Przenieś wszystkich tutaj',
+					id: 'moveus',
+					action: _ => {
+						tasks.execute_command(`/move us ${channelID}`);
 					}
 				}));
 
