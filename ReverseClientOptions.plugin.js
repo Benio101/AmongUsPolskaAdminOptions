@@ -31,27 +31,13 @@ module.exports = (() =>
 			author: 'Benio',
 			authorId: '231850998279176193',
 			invite: 'reversecommunity',
-			version: '3.1.2',
+			version: '3.1.3',
 		},
 
 		// added, fixed, improved
 		changeLog:
 		{
-			improved:
-			{
-				'Statystyki': 'Statystyki sprawdzane są teraz nie tylko na statbocie, ale i na reverse bocie',
-				'Kolory': 'Usunięto niektóre kolory z menu kontekstowego'
-			},
-			added:
-			{
-				'Menu VC': 'Dodano menu kontekstowe na kanałach głosowych',
-				'Nowa opcja': 'Przenieś wszystkich tutaj'
-			},
-			fixed:
-			{
-				'Mute (tekstowy)': 'Po komendzie /twarn nie następuje już komenda /twarns',
-				'Mute (głosowy)': 'Po komendzie /vwarn nie następuje już komenda /vwarns'
-			}
+			
 		},
 
 		// milliseconds
@@ -1145,8 +1131,9 @@ module.exports = (() =>
 					&&	!has_emoji(message.reactions, emojis.thumb_up.name)
 					&&	!has_emoji(message.reactions, emojis.thumb_down.name)
 					&&	message.content
-					&&	!message.content.startsWith('vmute ')
+					&&	!message.content.startsWith('paula ')
 					&&	!message.content.startsWith('sban ')
+					&&	!message.content.startsWith('vmute ')
 				)
 				{
 					children.unshift(BDFDB.ReactUtils.createElement(BDFDB.LibraryComponents.TooltipContainer,
@@ -1161,6 +1148,41 @@ module.exports = (() =>
 							{
 								tasks.add_reaction(channel.id, message.id, emojis.thumb_up);
 								tasks.execute_command(`/ban ${message.content}`);
+							},
+							children: BDFDB.ReactUtils.createElement(BDFDB.LibraryComponents.SvgIcon,
+							{
+								className: BDFDB.disCN.messagetoolbaricon,
+								iconSVG: images.banhammer
+							})
+						})
+					}));
+				}
+
+				// Zgłoszenia: Paula
+				if
+				(		!expanded
+					&&	author.id != BDFDB.UserUtils.me.id
+					&&	BDFDB.UserUtils.can('BAN_MEMBERS')
+					&&	channel.id == channels.zgłoszenia
+					&&	'reactions' in message
+					&&	!has_emoji(message.reactions, emojis.thumb_up.name)
+					&&	!has_emoji(message.reactions, emojis.thumb_down.name)
+					&&	message.content
+					&&	message.content.startsWith('paula ')
+				)
+				{
+					children.unshift(BDFDB.ReactUtils.createElement(BDFDB.LibraryComponents.TooltipContainer,
+					{
+						key: 'mention',
+						text: 'Paula',
+						className: config.info.name + '-MessageOptionToolbar-button',
+						children: BDFDB.ReactUtils.createElement(BDFDB.LibraryComponents.Clickable,
+						{
+							className: BDFDB.disCN.messagetoolbarbutton,
+							onClick: _ =>
+							{
+								tasks.add_reaction(channel.id, message.id, emojis.thumb_up);
+								tasks.execute_command(`/${message.content}`);
 							},
 							children: BDFDB.ReactUtils.createElement(BDFDB.LibraryComponents.SvgIcon,
 							{
@@ -1200,7 +1222,7 @@ module.exports = (() =>
 							children: BDFDB.ReactUtils.createElement(BDFDB.LibraryComponents.SvgIcon,
 							{
 								className: BDFDB.disCN.messagetoolbaricon,
-								iconSVG: images.mute
+								iconSVG: images.banhammer
 							})
 						})
 					}));
