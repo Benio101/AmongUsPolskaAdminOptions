@@ -31,13 +31,14 @@ module.exports = (() =>
 			author: 'Benio',
 			authorId: '231850998279176193',
 			invite: 'reversecommunity',
-			version: '3.1.3',
+			version: '3.1.4',
 		},
 
 		// added, fixed, improved
 		changeLog:
 		{
-			
+			added: {'ReverseCraft': 'Dodano opcję przerzucania ludzi na kanał Craft Supportu'},
+			improved: {'Przenoszenie na kanały': 'Poprawiono czytelność opcji związanych z przenoszeniem na kanały'},
 		},
 
 		// milliseconds
@@ -275,6 +276,15 @@ module.exports = (() =>
 			
 		}
 
+		#user-context-${config.info.name + '-Menu-UserContextMenu--move_craft'}
+		{
+			
+		}
+		#user-context-${config.info.name + '-Menu-UserContextMenu--move_craft'}.da-focused
+		{
+			
+		}
+
 		#user-context-${config.info.name + '-Menu-UserContextMenu--stat'}
 		{
 			color: #4090E0;
@@ -299,6 +309,24 @@ module.exports = (() =>
 			
 		}
 		#channel-context-${config.info.name + '-Menu-ChannelContextMenu--move'}.da-focused
+		{
+			
+		}
+
+		#channel-context-${config.info.name + '-Menu-ChannelContextMenu--moveusers'}
+		{
+			
+		}
+		#channel-context-${config.info.name + '-Menu-ChannelContextMenu--moveusers'}.da-focused
+		{
+			
+		}
+
+		#channel-context-${config.info.name + '-Menu-ChannelContextMenu--moveus'}
+		{
+			
+		}
+		#channel-context-${config.info.name + '-Menu-ChannelContextMenu--moveus'}.da-focused
 		{
 			
 		}
@@ -1369,7 +1397,7 @@ module.exports = (() =>
 				let menuEntries = [];
 
 				menuEntries.push(BDFDB.ContextMenuUtils.createItem(BDFDB.LibraryComponents.MenuItems.MenuItem, {
-					label: 'Przenieś wszystkich do mnie',
+					label: 'Przenieś cały kanał do mnie',
 					id: 'move',
 					action: _ => {
 						tasks.execute_command(`/move ${channelID}`);
@@ -1377,7 +1405,15 @@ module.exports = (() =>
 				}));
 
 				menuEntries.push(BDFDB.ContextMenuUtils.createItem(BDFDB.LibraryComponents.MenuItems.MenuItem, {
-					label: 'Przenieś wszystkich tutaj',
+					label: 'Przenieś użytkowników tutaj',
+					id: 'moveusers',
+					action: _ => {
+						tasks.execute_command(`/move users ${channelID}`);
+					}
+				}));
+
+				menuEntries.push(BDFDB.ContextMenuUtils.createItem(BDFDB.LibraryComponents.MenuItems.MenuItem, {
+					label: 'Przenieś wszystkich nas tutaj',
 					id: 'moveus',
 					action: _ => {
 						tasks.execute_command(`/move us ${channelID}`);
@@ -1477,6 +1513,16 @@ module.exports = (() =>
 						id: 'move',
 						action: _ => {
 							tasks.execute_command(`/move ${user.id}`);
+						}
+					}));
+				}
+
+				if (user.id != BDFDB.UserUtils.me.id) {
+					menuEntries.push(BDFDB.ContextMenuUtils.createItem(BDFDB.LibraryComponents.MenuItems.MenuItem, {
+						label: 'Wywal na kloce',
+						id: 'move_craft',
+						action: _ => {
+							tasks.execute_command(`/move ${user.id} craft`);
 						}
 					}));
 				}
