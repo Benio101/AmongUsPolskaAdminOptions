@@ -1,6 +1,6 @@
 /**
  * @name ReverseClientOptions
- * @description Dodatkowe opcje dla Administracji serwera Among Us Reverse.
+ * @description Dodatkowe opcje dla Administracji serwera Reverse Community.
  * @website https://github.com/Benio101/ReverseClientOptions
  * @github https://github.com/Benio101/ReverseClientOptions
  * @github_raw https://raw.githubusercontent.com/Benio101/ReverseClientOptions/main/ReverseClientOptions.plugin.js
@@ -22,7 +22,7 @@ module.exports = (() =>
 		info:
 		{
 			name: 'ReverseClientOptions',
-			description: 'Dodatkowe opcje dla Administracji serwera Among Us Reverse.',
+			description: 'Dodatkowe opcje dla Administracji serwera Reverse Community.',
 			website: 'https://github.com/Benio101/ReverseClientOptions',
 			github: 'https://github.com/Benio101/ReverseClientOptions',
 			github_raw: 'https://raw.githubusercontent.com/Benio101/ReverseClientOptions/main/ReverseClientOptions.plugin.js',
@@ -37,8 +37,7 @@ module.exports = (() =>
 		// added, fixed, improved
 		changeLog:
 		{
-			added: {'ReverseCraft': 'Dodano opcję przerzucania ludzi na kanał Craft Supportu'},
-			improved: {'Przenoszenie na kanały': 'Poprawiono czytelność opcji związanych z przenoszeniem na kanały'},
+			added: {'Moderator': 'Dodano opcję sprawdzania statystyk przez moderator+'},
 		},
 
 		// milliseconds
@@ -1490,7 +1489,7 @@ module.exports = (() =>
 				let contextMenuItems = [];
 				let menuEntries = [];
 
-				if (BDFDB.UserUtils.can('ADMINISTRATOR')) {
+				if (BDFDB.UserUtils.can('BAN_MEMBERS')) {
 					menuEntries.push(
 						BDFDB.ContextMenuUtils.createItem(BDFDB.LibraryComponents.MenuItems.MenuItem, {
 							label: 'Sprawdź statystyki',
